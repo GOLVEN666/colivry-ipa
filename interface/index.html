@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Intégration API Colivry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --primary: #29c76f;
+        --primary-dark: #22a85a;
+        --primary-light: rgba(41, 199, 111, 0.1);
+        --text-dark: #1f2933;
+        --text-light: #f5f7fa;
+        --border: #d5d9e2;
+        --bg: #f8fafc;
+        --card-bg: #ffffff;
+        --code-bg: #f0f4ff;
+        --output-bg: #0f172a;
+        --output-text: #f8fafc;
+      }
+
+      [data-theme="dark"] {
+        --primary: #29c76f;
+        --primary-dark: #2dd87a;
+        --primary-light: rgba(41, 199, 111, 0.15);
+        --text-dark: #f5f7fa;
+        --text-light: #1f2933;
+        --border: #374151;
+        --bg: #111827;
+        --card-bg: #1f2937;
+        --code-bg: rgba(41, 199, 111, 0.15);
+        --output-bg: #0a0e14;
+        --output-text: #e5e7eb;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        background: var(--bg);
+        color: var(--text-dark);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        padding: 24px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .card {
+        background: var(--card-bg);
+        width: min(960px, 100%);
+        border-radius: 18px;
+        box-shadow: 0 25px 45px rgba(15, 23, 42, 0.12);
+        padding: 40px;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      [data-theme="dark"] .card {
+        box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5);
+      }
+
+      .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .logo {
+        height: 48px;
+        width: auto;
+      }
+
+      .theme-toggle {
+        background: var(--primary-light);
+        border: 1px solid var(--primary);
+        color: var(--primary);
+        border-radius: 10px;
+        padding: 10px 16px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .theme-toggle:hover {
+        background: var(--primary);
+        color: white;
+      }
+
+      .theme-toggle svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      form {
+        display: grid;
+        gap: 18px;
+        margin-top: 32px;
+      }
+
+      label {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 14px;
+        color: #4c566a;
+      }
+
+      input, select {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+        font-size: 15px;
+        font-family: inherit;
+        background: var(--card-bg);
+        color: var(--text-dark);
+        transition: all 0.2s ease;
+      }
+
+      input:focus, select:focus {
+        outline: 2px solid var(--primary-light);
+        border-color: var(--primary);
+      }
+
+      h2 {
+        margin-top: 40px;
+        margin-bottom: 8px;
+      }
+
+      header h1 {
+        margin: 0 0 12px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+
+      header p {
+        margin: 0;
+        color: #4c566a;
+        line-height: 1.5;
+      }
+
+      .table-wrapper {
+        margin-top: 32px;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        background: var(--primary-light);
+      }
+
+      th,
+      td {
+        padding: 18px 24px;
+        text-align: left;
+        font-size: 15px;
+      }
+
+      th {
+        font-weight: 600;
+        color: #1f2933;
+      }
+
+      td {
+        border-top: 1px solid var(--border);
+        color: #1f2933;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: var(--primary-light);
+        color: var(--primary);
+        font-weight: 500;
+      }
+
+      .btn {
+        border: 1px solid var(--border);
+        background: var(--card-bg);
+        color: var(--text-dark);
+        border-radius: 8px;
+        padding: 8px 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .btn:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+
+      .btn.primary {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+      }
+
+      .btn.primary:hover {
+        background: var(--primary-dark);
+        border-color: var(--primary-dark);
+      }
+
+      .status {
+        margin-top: 18px;
+        padding: 12px 16px;
+        border-radius: 10px;
+        font-size: 14px;
+      }
+
+      .status.pending {
+        background: #fff5db;
+        color: #ad6800;
+      }
+
+      .status.success {
+        background: var(--primary-light);
+        color: var(--primary-dark);
+      }
+
+      .status.error {
+        background: #fdeaea;
+        color: #b42318;
+      }
+
+      .doc-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+        margin-top: 16px;
+      }
+
+      .doc-card {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        background: var(--card-bg);
+        transition: all 0.2s ease;
+      }
+
+      .doc-card:hover {
+        border-color: var(--primary);
+        box-shadow: 0 4px 12px var(--primary-light);
+      }
+
+      .doc-card h3 {
+        margin: 0;
+        font-size: 16px;
+      }
+
+      .doc-card p {
+        margin: 0;
+        color: #4c566a;
+        font-size: 14px;
+      }
+
+      .token-card {
+        border: 1px dashed var(--primary);
+        background: var(--primary-light);
+        padding: 18px;
+        border-radius: 14px;
+        margin-top: 24px;
+      }
+
+      .token-card header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+
+      .token-value {
+        margin: 0;
+        font-size: 13px;
+        white-space: nowrap;
+        overflow: auto;
+      }
+
+      .output {
+        background: var(--output-bg);
+        color: var(--output-text);
+        padding: 16px;
+        margin: 0;
+        border-radius: 0 0 16px 16px;
+        max-height: 240px;
+        overflow: auto;
+        font-size: 13px;
+        font-family: 'Courier New', monospace;
+      }
+
+      .credentials {
+        margin-top: 24px;
+        font-size: 14px;
+        color: #4c566a;
+      }
+
+      code {
+        background: var(--code-bg);
+        color: var(--primary-dark);
+        padding: 2px 6px;
+        border-radius: 6px;
+        font-size: 13px;
+      }
+
+      [data-theme="dark"] code {
+        color: var(--primary);
+      }
+
+      @media (max-width: 640px) {
+        body {
+          padding: 12px;
+        }
+
+        .card {
+          padding: 24px;
+        }
+
+        th,
+        td {
+          padding: 14px 16px;
+        }
+
+        form {
+          margin-top: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="card">
+      <div class="header-top">
+        <div class="logo-container">
+          <img src="https://www.app.colivry.co/images/_/_/_/_/colivry-app/resources/js/src/assets/images/logo/logo.svg" alt="Colivry Logo" class="logo" />
+          <div>
+            <p class="badge">Intégration API</p>
+            <h1 style="margin: 8px 0 0;">Portail d'accès Colivry</h1>
+          </div>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+          <span id="theme-text">Mode sombre</span>
+        </button>
+      </div>
+      <header>
+        <p>
+          Connectez-vous avec vos identifiants livreur / admin / vendeur. Le
+          formulaire envoie une requête <code>POST /login</code> (JSON) afin
+          d'obtenir un <em>accessToken</em>, puis utilise ce jeton pour tester
+          l'API. Vos ressources documentaires apparaissent automatiquement selon
+          vos permissions.
+        </p>
+        <div style="margin-top: 20px; padding: 16px; background: var(--primary-light); border-radius: 12px; border: 1px solid var(--primary);">
+          <h3 style="margin: 0 0 8px; font-size: 16px; color: var(--primary-dark); display: flex; align-items: center; gap: 8px;">
+            <span>📚</span>
+            <span>Documentation API complète</span>
+          </h3>
+          <p style="margin: 0 0 12px; font-size: 14px; opacity: 0.9;">
+            Consultez la documentation détaillée de tous les endpoints avec exemples, paramètres et réponses.
+            <strong>Accès libre, aucune connexion requise.</strong>
+          </p>
+          <a href="api-docs.html" target="_blank" class="btn primary" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+            <span>Ouvrir la documentation API</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </div>
+      </header>
+
+      <form id="login-form">
+        <label>
+          Nom d'utilisateur
+          <input
+            type="text"
+            id="username"
+            placeholder="pierre"
+            value="pierre"
+            autocomplete="username"
+            required
+          />
+        </label>
+
+        <label>
+          Mot de passe
+          <input
+            type="password"
+            id="password"
+            placeholder="123456"
+            value="123456"
+            autocomplete="current-password"
+            required
+          />
+        </label>
+
+        <button type="submit" class="btn primary">Se connecter & tester</button>
+
+        <small class="credentials">
+          Payload envoyé:
+          <code>{ "username": "test", "password": "12345678" }</code>
+        </small>
+      </form>
+
+      <div id="login-status" class="status"></div>
+
+      <section id="token-wrap" class="token-card" hidden>
+        <header>
+          <h3 style="margin: 0;">Access token</h3>
+          <button class="btn" id="copy-token">Copier</button>
+        </header>
+        <p id="token-value" class="token-value"></p>
+        <p style="margin: 12px 0 0; font-size: 13px; color: var(--text-dark); opacity: 0.7;">
+          À conserver côté serveur uniquement. Transmettez-le via
+          <code>Authorization: Bearer &lt;token&gt;</code>.
+        </p>
+      </section>
+
+      <section id="secure-area" hidden>
+        <h2>Docs autorisées</h2>
+        <p id="role-hint"></p>
+        <div id="doc-grid" class="doc-grid"></div>
+
+        <div class="table-wrapper" id="testing-card">
+          <h3 style="margin: 0 0 16px;">Tester les endpoints</h3>
+          <label style="margin-bottom: 12px; display: block;">
+            <strong>Endpoint à tester:</strong>
+            <select id="endpoint-select" style="margin-top: 8px; width: 100%;">
+              <option value="/orders/shipped?limit=5">GET /orders/shipped (Colis expédiés)</option>
+              <option value="/orders?limit=5">GET /orders (Tous les colis)</option>
+              <option value="/orders/new?limit=5">GET /orders/new (Nouveaux colis)</option>
+              <option value="/orders/in-progress?limit=5">GET /orders/in-progress (Colis en cours)</option>
+              <option value="/orders/delivered?limit=5">GET /orders/delivered (Colis livrés)</option>
+              <option value="/orders/to-return?limit=5">GET /orders/to-return (Colis à retourner)</option>
+              <option value="/orders/change-address?limit=5">GET /orders/change-address (Changement d'adresse)</option>
+              <option value="/pickup-requests?limit=5">GET /pickup-requests (Demandes de ramassage)</option>
+              <option value="/exit-vouchers?limit=5">GET /exit-vouchers (Bons de sortie)</option>
+              <option value="/return-vouchers?limit=5">GET /return-vouchers (Bons de retour)</option>
+              <option value="/refund-requests?limit=5">GET /refund-requests (Demandes de remboursement)</option>
+              <option value="/statistics">GET /statistics (Tableau de bord)</option>
+              <option value="/user">GET /user (Profil utilisateur)</option>
+            </select>
+          </label>
+          <button class="btn primary" id="test-get" style="width: 100%; margin-bottom: 16px;">Lancer la requête GET</button>
+          <pre id="test-output" class="output" aria-live="polite"></pre>
+        </div>
+      </section>
+    </section>
+
+    <script>
+      // Theme management
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeText = document.getElementById("theme-text");
+      const html = document.documentElement;
+
+      function initTheme() {
+        const savedTheme = localStorage.getItem("theme") || "light";
+        html.setAttribute("data-theme", savedTheme);
+        updateThemeText(savedTheme);
+      }
+
+      function updateThemeText(theme) {
+        themeText.textContent = theme === "dark" ? "Mode clair" : "Mode sombre";
+      }
+
+      themeToggle.addEventListener("click", () => {
+        const currentTheme = html.getAttribute("data-theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+        html.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        updateThemeText(newTheme);
+      });
+
+      initTheme();
+
+      const API_BASE = "https://www.colivry.co/api/v1";
+      const ROLE_MAP = {
+        "delivery-employee": "livreur",
+        "delivery": "livreur",
+        admin: "admin",
+        "admin-employee": "admin",
+        seller: "vendeur",
+        "seller-employee": "vendeur",
+      };
+      const DOCS_BY_ROLE = {
+        livreur: [
+          {
+            label: "Guide Livreur",
+            description: "Checklist livraison & récupération tracking.",
+            href: "../docs/role-livreur.md",
+          },
+          {
+            label: "Tester l'API",
+            description: "Suivez les étapes GET /orders/shipped.",
+            action: "test",
+          },
+        ],
+        admin: [
+          {
+            label: "Documentation API",
+            description: "Endpoints /user, /orders, quotas.",
+            href: "../docs/colivry-api.md",
+          },
+          {
+            label: "Google Sheets Sync",
+            description: "Synchroniser les commandes expédiées.",
+            href: "../docs/google-sheets.md",
+          },
+          {
+            label: "Guide Admin",
+            description: "Permissions complètes & rotation des clés.",
+            href: "../docs/role-admin.md",
+          },
+        ],
+        vendeur: [
+          {
+            label: "Guide Vendeur",
+            description: "Suivi des ventes et notifications clients.",
+            href: "../docs/role-vendeur.md",
+          },
+          {
+            label: "Documentation API (lecture)",
+            description: "Endpoints autorisés en lecture seule.",
+            href: "../docs/colivry-api.md",
+          },
+        ],
+      };
+
+      const loginForm = document.getElementById("login-form");
+      const statusEl = document.getElementById("login-status");
+      const secureArea = document.getElementById("secure-area");
+      const roleHint = document.getElementById("role-hint");
+      const docGrid = document.getElementById("doc-grid");
+      const testButton = document.getElementById("test-get");
+      const testOutput = document.getElementById("test-output");
+      const tokenWrap = document.getElementById("token-wrap");
+      const tokenValue = document.getElementById("token-value");
+      const copyTokenBtn = document.getElementById("copy-token");
+
+      let activeSession = null;
+
+      loginForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        testOutput.textContent = "";
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        statusEl.textContent =
+          "Connexion en cours... (POST /login + génération du jeton)";
+        statusEl.className = "status pending";
+
+        try {
+          const response = await fetch(`${API_BASE}/login`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+          });
+
+          if (!response.ok) {
+            const message = await response.text();
+            throw new Error(message || `Erreur ${response.status}`);
+          }
+
+          const payload = await response.json();
+          const token =
+            payload.accessToken || payload.token || payload.access_token;
+
+          if (!token) {
+            throw new Error("Aucun accessToken retourné par l'API.");
+          }
+
+          const detectedRoleRaw =
+            payload.user_role ||
+            payload.user?.role ||
+            payload.user_data?.role ||
+            "livreur";
+          const role =
+            ROLE_MAP[detectedRoleRaw.toLowerCase()] ||
+            detectedRoleRaw.toLowerCase();
+
+          activeSession = {
+            username,
+            role,
+            token,
+            profile: payload.user_data || payload.user || {},
+          };
+
+          statusEl.textContent = `Authentifié en tant que ${
+            activeSession.profile.first_name || username
+          } (${role}).`;
+          statusEl.className = "status success";
+
+          tokenWrap.hidden = false;
+          tokenValue.textContent = token;
+
+          renderDocs(role);
+          secureArea.hidden = false;
+        } catch (error) {
+          statusEl.textContent = `Échec: ${error.message}. Vérifiez l'exemple { "username": "pierre", "password": "123456" } ou contactez un admin.`;
+          statusEl.className = "status error";
+          secureArea.hidden = true;
+          tokenWrap.hidden = true;
+          tokenValue.textContent = "";
+          activeSession = null;
+        }
+      });
+
+      copyTokenBtn.addEventListener("click", () => {
+        if (!activeSession?.token) return;
+        navigator.clipboard.writeText(activeSession.token).then(() => {
+          const original = copyTokenBtn.textContent;
+          copyTokenBtn.textContent = "Copié ✔";
+          setTimeout(() => (copyTokenBtn.textContent = original), 1200);
+        });
+      });
+
+      function renderDocs(role) {
+        const resources = DOCS_BY_ROLE[role] || [];
+        roleHint.textContent = `Rôle détecté: ${role} (${resources.length} ressources disponibles).`;
+        docGrid.innerHTML = "";
+
+        resources.forEach((resource) => {
+          const card = document.createElement("article");
+          card.className = "doc-card";
+
+          const title = document.createElement("h3");
+          title.textContent = resource.label;
+          card.appendChild(title);
+
+          const desc = document.createElement("p");
+          desc.textContent = resource.description;
+          card.appendChild(desc);
+
+          if (resource.href) {
+            const link = document.createElement("a");
+            link.href = resource.href;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            link.textContent = "Ouvrir";
+            link.className = "btn";
+            card.appendChild(link);
+          } else if (resource.action === "test") {
+            const btn = document.createElement("button");
+            btn.className = "btn";
+            btn.textContent = "Utiliser le test GET ci-dessous";
+            btn.addEventListener("click", () => testButton.focus());
+            card.appendChild(btn);
+          }
+
+          docGrid.appendChild(card);
+        });
+      }
+
+      const endpointSelect = document.getElementById("endpoint-select");
+
+      testButton.addEventListener("click", async () => {
+        if (!activeSession) {
+          statusEl.textContent = "Connectez-vous avant de lancer un GET.";
+          statusEl.className = "status error";
+          return;
+        }
+
+        const selectedEndpoint = endpointSelect.value;
+        testOutput.textContent = `Requête GET en cours vers ${selectedEndpoint}...`;
+
+        try {
+          const response = await fetch(`${API_BASE}${selectedEndpoint}`, {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${activeSession.token}`,
+              Accept: "application/json",
+            },
+          });
+
+          const text = await response.text();
+          let formattedOutput = "";
+          
+          if (response.ok && text) {
+            try {
+              const json = JSON.parse(text);
+              formattedOutput = JSON.stringify(json, null, 2);
+            } catch {
+              formattedOutput = text;
+            }
+          } else {
+            formattedOutput = `Statut ${response.status}: ${text || "vide"}`;
+          }
+          
+          testOutput.textContent = formattedOutput;
+        } catch (error) {
+          testOutput.textContent = `Erreur GET: ${error.message}`;
+        }
+      });
+    </script>
+  </body>
+</html>

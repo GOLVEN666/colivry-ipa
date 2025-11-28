@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Documentation API Colivry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --primary: #29c76f;
+        --primary-dark: #22a85a;
+        --primary-light: rgba(41, 199, 111, 0.1);
+        --text-dark: #1f2933;
+        --text-light: #f5f7fa;
+        --border: #d5d9e2;
+        --bg: #f8fafc;
+        --card-bg: #ffffff;
+        --code-bg: #f0f4ff;
+        --output-bg: #0f172a;
+        --output-text: #f8fafc;
+      }
+
+      [data-theme="dark"] {
+        --primary: #29c76f;
+        --primary-dark: #2dd87a;
+        --primary-light: rgba(41, 199, 111, 0.15);
+        --text-dark: #f5f7fa;
+        --text-light: #1f2933;
+        --border: #374151;
+        --bg: #111827;
+        --card-bg: #1f2937;
+        --code-bg: rgba(41, 199, 111, 0.15);
+        --output-bg: #0a0e14;
+        --output-text: #e5e7eb;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        background: var(--bg);
+        color: var(--text-dark);
+        line-height: 1.6;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 40px;
+        padding-bottom: 24px;
+        border-bottom: 2px solid var(--border);
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .logo {
+        height: 48px;
+        width: auto;
+      }
+
+      .theme-toggle {
+        background: var(--primary-light);
+        border: 1px solid var(--primary);
+        color: var(--primary);
+        border-radius: 10px;
+        padding: 10px 16px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .theme-toggle:hover {
+        background: var(--primary);
+        color: white;
+      }
+
+      .theme-toggle svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .intro {
+        background: var(--card-bg);
+        border-radius: 16px;
+        padding: 32px;
+        margin-bottom: 32px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        border: 1px solid var(--border);
+      }
+
+      .intro p {
+        margin: 12px 0;
+        color: var(--text-dark);
+        opacity: 0.9;
+      }
+
+      .section {
+        background: var(--card-bg);
+        border-radius: 16px;
+        padding: 32px;
+        margin-bottom: 32px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        border: 1px solid var(--border);
+      }
+
+      .section h2 {
+        margin: 0 0 24px;
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--primary);
+        padding-bottom: 12px;
+        border-bottom: 2px solid var(--primary-light);
+      }
+
+      .endpoint {
+        margin-bottom: 40px;
+        padding-bottom: 32px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .endpoint:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .method {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 13px;
+        margin-right: 12px;
+      }
+
+      .method.get {
+        background: rgba(41, 199, 111, 0.15);
+        color: var(--primary-dark);
+      }
+
+      .method.post {
+        background: rgba(59, 130, 246, 0.15);
+        color: #3b82f6;
+      }
+
+      .endpoint-url {
+        font-family: 'Courier New', monospace;
+        font-size: 16px;
+        color: var(--text-dark);
+        word-break: break-all;
+        margin: 12px 0;
+      }
+
+      .params-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background: var(--card-bg);
+      }
+
+      .params-table th {
+        background: var(--primary-light);
+        color: var(--primary-dark);
+        padding: 12px 16px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 14px;
+        border: 1px solid var(--border);
+      }
+
+      .params-table td {
+        padding: 12px 16px;
+        border: 1px solid var(--border);
+        font-size: 14px;
+      }
+
+      .params-table tr:nth-child(even) {
+        background: var(--bg);
+      }
+
+      .code-block {
+        background: var(--output-bg);
+        color: var(--output-text);
+        padding: 20px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        line-height: 1.5;
+        margin: 20px 0;
+      }
+
+      .code-block code {
+        color: var(--output-text);
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 600;
+        margin-left: 8px;
+      }
+
+      .badge.required {
+        background: rgba(239, 68, 68, 0.15);
+        color: #ef4444;
+      }
+
+      .badge.optional {
+        background: rgba(156, 163, 175, 0.15);
+        color: #9ca3af;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 16px;
+        }
+
+        .header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+        }
+
+        .section {
+          padding: 20px;
+        }
+
+        .params-table {
+          font-size: 12px;
+        }
+
+        .params-table th,
+        .params-table td {
+          padding: 8px 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="logo-container">
+          <img
+            src="https://www.app.colivry.co/images/_/_/_/_/colivry-app/resources/js/src/assets/images/logo/logo.svg"
+            alt="Colivry Logo"
+            class="logo"
+          />
+          <h1>API Colivry Documentation</h1>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+          <span id="theme-text">Mode sombre</span>
+        </button>
+      </div>
+
+      <div class="intro">
+        <h2 style="margin-top: 0; color: var(--primary);">Bienvenue à l'API Colivry</h2>
+        <p>
+          Bienvenue à l'API Colivry, votre solution complète pour la gestion de la livraison et des commandes.
+          Pour accéder à notre API, vous aurez besoin d'un jeton d'authentification. Ce jeton est généré via
+          l'endpoint <code>POST /login</code> avec vos identifiants, assurez-vous de l'inclure dans l'en-tête
+          <code>Authorization: Bearer [votre jeton]</code> de chaque requête.
+        </p>
+        <p>
+          Notre API renvoie des codes d'état HTTP appropriés et des messages descriptifs en cas d'erreur.
+          Par exemple, une réponse à une requête non autorisée pourrait ressembler à :
+          <code>{ "error": "Vous n'avez pas les autorisations nécessaires" }</code>.
+        </p>
+        <p>
+          Nous limitons le nombre de requêtes à notre API pour assurer la qualité du service.
+          Veuillez noter qu'il y a une limite de <strong>1000 requêtes par heure</strong>.
+        </p>
+        <p>
+          Chez Colivry, nous nous engageons à améliorer continuellement notre service. Tout en nous efforçant
+          de maintenir la rétrocompatibilité de notre API, nous publierons des notifications anticipées et des
+          instructions de migration pour tous les changements majeurs.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>🔐 Sécurité</h2>
+        
+        <div class="endpoint">
+          <div>
+            <span class="method post">POST</span>
+            <span class="endpoint-url">https://www.colivry.co/api/v1/login</span>
+          </div>
+          
+          <h3 style="margin-top: 20px; font-size: 18px;">Authentification</h3>
+          <p>Obtenez un jeton d'accès en vous authentifiant avec vos identifiants.</p>
+
+          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
+          <table class="params-table">
+            <thead>
+              <tr>
+                <th>Paramètre</th>
+                <th>Valeur</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Content-Type</code></td>
+                <td>application/json</td>
+                <td>Type de Media</td>
+              </tr>
+              <tr>
+                <td><code>Accept</code></td>
+                <td>application/json</td>
+                <td>Type de réponse attendu</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres (Body):</h4>
+          <table class="params-table">
+            <thead>
+              <tr>
+                <th>Paramètre</th>
+                <th>Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>username</code> <span class="badge required">Obligatoire</span></td>
+                <td>string</td>
+                <td>Nom d'utilisateur (ex: "pierre")</td>
+              </tr>
+              <tr>
+                <td><code>password</code> <span class="badge required">Obligatoire</span></td>
+                <td>string</td>
+                <td>Mot de passe de l'utilisateur</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 style="margin-top: 20px; font-size: 16px;">Résultat:</h4>
+          <div class="code-block">
+<code>{
+    "accessToken": "38165|I5pwBNyzNQX9Ki9VpURznJhsqchwTeJrA6nyZu6z",
+    "user_role": "delivery-employee",
+    "user_data": {
+        "key": "418d2100-b3bb-4fde-b7cf-a2b560d7c4f5",
+        "first_name": "Pierre",
+        "last_name": "Dupont",
+        "avatar_path": null
+    },
+    "active": 1
+}</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>👤 Profil Utilisateur</h2>
+
+        <div class="endpoint">
+          <div>
+            <span class="method get">GET</span>
+            <span class="endpoint-url">https://www.colivry.co/api/v1/user</span>
+          </div>
+
+          <h3 style="margin-top: 20px; font-size: 18px;">Récupérer le profil utilisateur</h3>
+          <p>Récupère les informations du profil de l'utilisateur authentifié.</p>
+
+          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
+          <table class="params-table">
+            <thead>
+              <tr>
+                <th>Paramètre</th>
+                <th>Valeur</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Accept</code></td>
+                <td>application/json</td>
+                <td>Type de Media</td>
+              </tr>
+              <tr>
+                <td><code>Authorization</code></td>
+                <td>Bearer [token]</td>
+                <td>Token, obtenu via POST /login</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 style="margin-top: 20px; font-size: 16px;">Résultat:</h4>
+          <div class="code-block">
+<code>{
+    "id": 42,
+    "email": "pierre@colivry.co",
+    "first_name": "Pierre",
+    "last_name": "Dupont",
+    "role": "delivery-employee",
+    "avatar_path": null
+}</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>📦 Commandes & Colis</h2>
+
+        <div class="endpoint">
+          <div>
+            <span class="method get">GET</span>
+            <span class="endpoint-url">https://www.colivry.co/api/v1/orders</span>
+          </div>
+
+          <h3 style="margin-top: 20px; font-size: 18px;">Liste tous les colis</h3>
+          <p>Récupère la liste complète des colis avec pagination et filtres optionnels.</p>
+
+          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
+          <table class="params-table">
+            <thead>
+              <tr>
+                <th>Paramètre</th>
+                <th>Valeur</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Accept</code></td>
+                <td>application/json</td>
+                <td>Type de Media</td>
+              </tr>
+              <tr>
+                <td><code>Authorization</code></td>
+                <td>Bearer [token]</td>
+                <td>Token, obtenu via POST /login</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres (Query):</h4>
+          <table class="params-table">
+            <thead>
+              <tr>
+                <th>Paramètre</th>
+                <th>Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>limit</code> <span class="badge optional">Optionnel</span></td>
+                <td>integer</td>
+                <td>Nombre d'éléments par page (défaut: 50)</td>
+              </tr>
+              <tr>
+                <td><code>page</code> <span class="badge optional">Optionnel</span></td>
+                <td>integer</td>
+                <td>Numéro de page (défaut: 1)</td>
+              </tr>
+              <tr>
+                <td><code>city</code> <span class="badge optional">Optionnel</span></td>
+                <td>string</td>
+                <td>Filtrer par ville (ex: "casa")</td>
+              </tr>
+              <tr>
+                <td><code>status</code> <span class="badge optional">Optionnel</span></td>
+                <td>string</td>
+                <td>Filtrer par statut</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 style="margin-top: 20px; font-size: 16px;">Résultat:</h4>
+          <div class="code-block">
+<code>{
+    "data": [
+        {
+            "order_id": "ORD-2024-001",
+            "status": "En attente de ramassage",
+            "created_at": "2024-08-18T15:04:13.000000Z",
+            "destination": "Adil",
+            "phone": "0674674444",
+            "city": {
+                "name": "CASABLANCA",
+                "id": 80
+            },
+            "price": 100,
+            "product_name": "sac"
+        }
+    ],
+    "pagination": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "per_page": 50,
+        "to": 1,
+        "total": 1
+    }
+}</code>
+          </div>
+        </div>
+
+        <div class="endpoint">
+          <div>
+            <span class="method get">GET</span>
+            <span class="endpoint-url">https://www.colivry.co/api/v1/orders/shipped</span>
+          </div>
+
+          <h3 style="margin-top: 20px; font-size: 18px;">Colis expédiés</h3>
+          <p>Récupère la liste des colis expédiés.</p>
+
+          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
+          <table class="params-table">
+            <thead>
+              <tr>
+                <th>Paramètre</th>
+                <th>Valeur</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Accept</code></td>
+                <td>application/json</td>
+                <td>Type de Media</td>
+              </tr>
+              <tr>
+                <td><code>Authorization</code></td>
+                <td>Bearer [token]</td>
+                <td>Token, obtenu via POST /login</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres (Query):</h4>
+          <table class="params-table">
+            <thead>
+              <tr>
+                <th>Paramètre</th>
+                <th>Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>from</code> <span class="badge optional">Optionnel</span></td>
+                <td>ISO8601</td>
+                <td>Date de début (ex: 2024-01-01T00:00:00Z)</td>
+              </tr>
+              <tr>
+                <td><code>to</code> <span class="badge optional">Optionnel</span></td>
+                <td>ISO8601</td>
+                <td>Date de fin (ex: 2024-12-31T23:59:59Z)</td>
+              </tr>
+              <tr>
+                <td><code>limit</code> <span class="badge optional">Optionnel</span></td>
+                <td>integer</td>
+                <td>Nombre d'éléments par page (défaut: 50)</td>
+              </tr>
+              <tr>
+                <td><code>page</code> <span class="badge optional">Optionnel</span></td>
+                <td>integer</td>
+                <td>Numéro de page (défaut: 1)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 style="margin-top: 20px; font-size: 16px;">Résultat:</h4>
+          <div class="code-block">
+<code>{
+    "data": [
+        {
+            "order_id": "ORD-2024-001",
+            "shipped_at": "2024-06-18T09:42:00Z",
+            "status": "shipped",
+            "carrier": "Chronopost",
+            "tracking": "XW123456789FR",
+            "total": 129.9,
+            "currency": "EUR"
+        }
+    ],
+    "pagination": {
+        "page": 1,
+        "limit": 50,
+        "total": 287
+    }
+}</code>
+          </div>
+        </div>
+
+        <div class="endpoint">
+          <div>
+            <span class="method get">GET</span>
+            <span class="endpoint-url">https://www.colivry.co/api/v1/orders/new</span>
+          </div>
+
+          <h3 style="margin-top: 20px; font-size: 18px;">Nouveaux colis</h3>
+          <p>Récupère la liste des nouveaux colis en attente de traitement.</p>
+
+          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
+          <table class="params-table">
+            <thead>
+              <tr>
+                <th>Paramètre</th>
+                <th>Valeur</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Accept</code></td>
+                <td>application/json</td>
+                <td>Type de Media</td>
+              </tr>
+              <tr>
+                <td><code>Authorization</code></td>
+                <td>Bearer [token]</td>
+                <td>Token, obtenu via POST /login</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="endpoint">
+          <div>
+            <span class="method get">GET</span>
+            <span class="endpoint-url">https://www.colivry.co/api/v1/orders/in-progress</span>
+          </div>
+
+          <h3 style="margin-top: 20px; font-size: 18px;">Colis en cours</h3>
+          <p>Récupère la liste des colis en cours de livraison.</p>
+
+          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
+          <table class="params-table">
+            <thead>
+              <tr>
+                <th>Paramètre</th>
+                <th>Valeur</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Accept</code></td>
+                <td>application/json</td>
+                <td>Type de Media</td>
+              </tr>
+              <tr>
+                <td><code>Authorization</code></td>
+                <td>Bearer [token]</td>
+                <td>Token, obtenu via POST /login</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="endpoint">
+          <div>
+            <span class="method get">GET</span>
+            <span class="endpoint-url">https://www.colivry.co/api/v1/orders/delivered</span>
+          </div>
+
+          <h3 style="margin-top: 20px; font-size: 18px;">Colis livrés</h3>
+          <p>Récupère la liste des colis livrés.</p>
+
+          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
+          <table class="params-table">
+            <thead>
+              <tr>
+                <th>Paramètre</th>
+                <th>Valeur</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Accept</code></td>
+                <td>application/json</td>
+                <td>Type de Media</td>
+              </tr>
+              <tr>
+                <td><code>Authorization</code></td>
+                <td>Bearer [token]</td>
+                <td>Token, obtenu via POST /login</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="endpoint">
+          <div>
+            <span class="method get">GET</span>
+            <span class="endpoint-url">https://www.colivry.co/api/v1/orders/to-return</span>
+          </div>
+
+          <h3 style="margin-top: 20px; font-size: 18px;">Colis à retourner</h3>
+          <p>Récupère la liste des colis à retourner.</p>
+
+          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
+          <table class="params-table">
+            <thead>
+              <tr>
+                <th>Paramètre</th>
+                <th>Valeur</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Accept</code></td>
+                <td>application/json</td>
+                <td>Type de Media</td>
+              </tr>
+              <tr>
+                <td><code>Authorization</code></td>
+                <td>Bearer [token]</td>
+                <td>Token, obtenu via POST /login</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="endpoint">
+          <div>
+            <span class="method get">GET</span>
+            <span class="endpoint-url">https://www.colivry.co/api/v1/orders/change-address</span>
+          </div>
+
+          <h3 style="margin-top: 20px; font-size: 18px;">Changement d'adresse</h3>
+          <p>Récupère la liste des demandes de changement d'adresse.</p>
+
+          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
+          <table class="params-table">
+            <thead>
+              <tr>
+                <th>Paramètre</th>
+                <th>Valeur</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Accept</code></td>
+                <td>application/json</td>
+                <td>Type de Media</td>
+              </tr>
+              <tr>
+                <td><code>Authorization</code></td>
+                <td>Bearer [token]</td>
+                <td>Token, obtenu via POST /login</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>🚚 Ramassages</h2>
+
+        <div class="endpoint">
+          <div>
+            <span class="method get">GET</span>
+            <span class="endpoint-url">https://www.colivry.co/api/v1/pickup-requests</span>
+          </div>
+
+          <h3 style="margin-top: 20px; font-size: 18px;">Liste des demandes de ramassage</h3>
+          <p>Récupère la liste des demandes de ramassage avec pagination.</p>
+
+          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
+          <table class="params-table">
+            <thead>
+              <tr>
+                <th>Paramètre</th>
+                <th>Valeur</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Accept</code></td>
+                <td>application/json</td>
+                <td>Type de Media</td>
+              </tr>
+              <tr>
+                <td><code>Authorization</code></td>
+                <td>Bearer [token]</td>
+                <td>Token, obtenu via POST /login</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres (Query):</h4>
+          <table class="params-table">
+            <thead>
+              <tr>
+                <th>Paramètre</th>
+                <th>Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>limit</code> <span class="badge optional">Optionnel</span></td>
+                <td>integer</td>
+                <td>Nombre d'éléments par page (défaut: 50)</td>
+              </tr>
+              <tr>
+                <td><code>page</code> <span class="badge optional">Optionnel</span></td>
+                <td>integer</td>
+                <td>Numéro de page (défaut: 1)</td>
+              </tr>
+              <tr>
+                <td><code>status</code> <span class="badge optional">Optionnel</span></td>
+                <td>string</td>
+                <td>Filtrer par statut</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>📋 Bons</h2>
+
+        <div class="endpoint">
+          <div>
+            <span class="method get">GET</span>
+            <span class="endpoint-url">https://www.colivry.co/api/v1/exit-vouchers</span>
+          </div>
+
+          <h3 style="margin-top: 20px; font-size: 18px;">Bons de sortie</h3>
+          <p>Récupère la liste des bons de sortie.</p>
+
+          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
+          <table class="params-table">
+            <thead>
+              <tr>
+                <th>Paramètre</th>
+                <th>Valeur</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Accept</code></td>
+                <td>application/json</td>
+                <td>Type de Media</td>
+              </tr>
+              <tr>
+                <td><code>Authorization</code></td>
+                <td>Bearer [token]</td>
+                <td>Token, obtenu via POST /login</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="endpoint">
+          <div>
+            <span class="method get">GET</span>
+            <span class="endpoint-url">https://www.colivry.co/api/v1/return-vouchers</span>
+          </div>
+
+          <h3 style="margin-top: 20px; font-size: 18px;">Bons de retour</h3>
+          <p>Récupère la liste des bons de retour.</p>
+
+          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
+          <table class="params-table">
+            <thead>
+              <tr>
+                <th>Paramètre</th>
+                <th>Valeur</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Accept</code></td>
+                <td>application/json</td>
+                <td>Type de Media</td>
+              </tr>
+              <tr>
+                <td><code>Authorization</code></td>
+                <td>Bearer [token]</td>
+                <td>Token, obtenu via POST /login</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>💰 Remboursements</h2>
+
+        <div class="endpoint">
+          <div>
+            <span class="method get">GET</span>
+            <span class="endpoint-url">https://www.colivry.co/api/v1/refund-requests</span>
+          </div>
+
+          <h3 style="margin-top: 20px; font-size: 18px;">Demandes de remboursement</h3>
+          <p>Récupère la liste des demandes de remboursement.</p>
+
+          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
+          <table class="params-table">
+            <thead>
+              <tr>
+                <th>Paramètre</th>
+                <th>Valeur</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Accept</code></td>
+                <td>application/json</td>
+                <td>Type de Media</td>
+              </tr>
+              <tr>
+                <td><code>Authorization</code></td>
+                <td>Bearer [token]</td>
+                <td>Token, obtenu via POST /login</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>📊 Statistiques</h2>
+
+        <div class="endpoint">
+          <div>
+            <span class="method get">GET</span>
+            <span class="endpoint-url">https://www.colivry.co/api/v1/statistics</span>
+          </div>
+
+          <h3 style="margin-top: 20px; font-size: 18px;">Tableau de bord</h3>
+          <p>Récupère les métriques et statistiques selon le rôle de l'utilisateur.</p>
+
+          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
+          <table class="params-table">
+            <thead>
+              <tr>
+                <th>Paramètre</th>
+                <th>Valeur</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Accept</code></td>
+                <td>application/json</td>
+                <td>Type de Media</td>
+              </tr>
+              <tr>
+                <td><code>Authorization</code></td>
+                <td>Bearer [token]</td>
+                <td>Token, obtenu via POST /login</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Theme management
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeText = document.getElementById("theme-text");
+      const html = document.documentElement;
+
+      function initTheme() {
+        const savedTheme = localStorage.getItem("theme") || "light";
+        html.setAttribute("data-theme", savedTheme);
+        updateThemeText(savedTheme);
+      }
+
+      function updateThemeText(theme) {
+        themeText.textContent = theme === "dark" ? "Mode clair" : "Mode sombre";
+      }
+
+      themeToggle.addEventListener("click", () => {
+        const currentTheme = html.getAttribute("data-theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+        html.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        updateThemeText(newTheme);
+      });
+
+      initTheme();
+    </script>
+  </body>
+</html>
+
