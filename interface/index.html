@@ -3,6 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Portail d'intégration API Colivry : connexion sécurisée, documentation détaillée et tests rapides pour livreurs, admins et vendeurs."
+    />
+    <meta
+      name="keywords"
+      content="Colivry, API Colivry, documentation API, intégration livraison, portail développeur, logistique Maroc"
+    />
+    <meta
+      name="robots"
+      content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"
+    />
+    <meta name="author" content="Colivry" />
+    <meta name="application-name" content="Portail API Colivry" />
+    <meta name="theme-color" content="#29C76F" />
+    <meta name="msapplication-TileColor" content="#29C76F" />
+    <link
+      rel="canonical"
+      href="https://www.colivry.co/colivry-ipa/interface/"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://www.app.colivry.co/images/_/_/_/_/colivry-app/resources/js/src/assets/images/logo/logo.svg"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="https://www.app.colivry.co/images/_/_/_/_/colivry-app/resources/js/src/assets/images/logo/logo.svg"
+    />
+    <meta property="og:title" content="Portail d'accès API Colivry" />
+    <meta
+      property="og:description"
+      content="Testez et connectez-vous à l'API Colivry pour suivre les commandes, récupérer les tokens et consulter la documentation en français."
+    />
+    <meta
+      property="og:image"
+      content="https://www.app.colivry.co/images/_/_/_/_/colivry-app/resources/js/src/assets/images/logo/logo.svg"
+    />
+    <meta
+      property="og:url"
+      content="https://www.colivry.co/colivry-ipa/interface/"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Colivry API" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Portail d'accès API Colivry" />
+    <meta
+      name="twitter:description"
+      content="Interface unifiée pour générer des tokens et parcourir la documentation API Colivry."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.app.colivry.co/images/_/_/_/_/colivry-app/resources/js/src/assets/images/logo/logo.svg"
+    />
     <title>Intégration API Colivry</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -261,6 +316,10 @@
         margin-top: 16px;
       }
 
+      .doc-card[style*="grid-column"] {
+        max-width: 100%;
+      }
+
       .doc-card {
         border: 1px solid var(--border);
         border-radius: 14px;
@@ -309,6 +368,115 @@
         font-size: 13px;
         white-space: nowrap;
         overflow: auto;
+      }
+
+      .token-info {
+        margin-top: 12px;
+        padding: 12px;
+        background: rgba(41, 199, 111, 0.05);
+        border-radius: 8px;
+        border-left: 3px solid var(--primary);
+      }
+
+      .token-info code {
+        display: block;
+        margin-top: 6px;
+        font-size: 12px;
+        word-break: break-all;
+        white-space: pre-wrap;
+      }
+
+      .role-badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-left: 8px;
+      }
+
+      .role-badge.delivery {
+        background: rgba(59, 130, 246, 0.15);
+        color: #3b82f6;
+      }
+
+      .role-badge.client {
+        background: rgba(139, 92, 246, 0.15);
+        color: #8b5cf6;
+      }
+
+      .role-badge.admin {
+        background: rgba(239, 68, 68, 0.15);
+        color: #ef4444;
+      }
+
+      .endpoint-group {
+        margin-top: 20px;
+        padding: 16px;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+      }
+
+      .endpoint-group h4 {
+        margin: 0 0 12px;
+        font-size: 14px;
+        color: var(--primary);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .permissions-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 12px;
+      }
+
+      .permission-tag {
+        padding: 4px 8px;
+        background: var(--primary-light);
+        color: var(--primary-dark);
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 500;
+      }
+
+      .endpoint-link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px;
+        margin-top: 6px;
+        background: var(--output-bg);
+        border-radius: 6px;
+        font-family: 'Courier New', monospace;
+        font-size: 12px;
+        color: var(--output-text);
+        word-break: break-all;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .endpoint-link:hover {
+        background: rgba(41, 199, 111, 0.1);
+        opacity: 0.9;
+      }
+
+      .endpoint-link .copy-icon {
+        flex-shrink: 0;
+        width: 16px;
+        height: 16px;
+        opacity: 0.7;
+        transition: opacity 0.2s ease;
+      }
+
+      .endpoint-link:hover .copy-icon {
+        opacity: 1;
+      }
+
+      .endpoint-link.copied {
+        background: rgba(41, 199, 111, 0.2);
       }
 
       .output {
@@ -360,6 +528,29 @@
         }
       }
     </style>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Portail API Colivry",
+        "applicationCategory": "WebApplication",
+        "operatingSystem": "Any",
+        "description": "Générez des tokens, testez les endpoints et accédez à la documentation API Colivry.",
+        "url": "https://www.colivry.co/colivry-ipa/interface/",
+        "inLanguage": "fr-FR",
+        "brand": {
+          "@type": "Brand",
+          "name": "Colivry",
+          "logo": "https://www.app.colivry.co/images/_/_/_/_/colivry-app/resources/js/src/assets/images/logo/logo.svg"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR",
+          "description": "Accès développeur gratuit à la documentation API."
+        }
+      }
+    </script>
   </head>
   <body>
     <section class="card">
@@ -380,28 +571,12 @@
       </div>
       <header>
         <p>
-          Connectez-vous avec vos identifiants livreur / admin / vendeur. Le
+          Connectez-vous avec vos identifiants (livreur, client ou admin). Le
           formulaire envoie une requête <code>POST /login</code> (JSON) afin
           d'obtenir un <em>accessToken</em>, puis utilise ce jeton pour tester
-          l'API. Vos ressources documentaires apparaissent automatiquement selon
-          vos permissions.
+          l'API. Les endpoints disponibles sont automatiquement filtrés selon
+          vos permissions et votre rôle.
         </p>
-        <div style="margin-top: 20px; padding: 16px; background: var(--primary-light); border-radius: 12px; border: 1px solid var(--primary);">
-          <h3 style="margin: 0 0 8px; font-size: 16px; color: var(--primary-dark); display: flex; align-items: center; gap: 8px;">
-            <span>📚</span>
-            <span>Documentation API complète</span>
-          </h3>
-          <p style="margin: 0 0 12px; font-size: 14px; opacity: 0.9;">
-            Consultez la documentation détaillée de tous les endpoints avec exemples, paramètres et réponses.
-            <strong>Accès libre, aucune connexion requise.</strong>
-          </p>
-          <a href="api-docs.html" target="_blank" class="btn primary" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
-            <span>Ouvrir la documentation API</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          </a>
-        </div>
       </header>
 
       <form id="login-form">
@@ -410,8 +585,6 @@
           <input
             type="text"
             id="username"
-            value="pierre"
-            autocomplete="username"
             required
           />
         </label>
@@ -421,18 +594,16 @@
           <input
             type="password"
             id="password"
-            value="123456"
-            autocomplete="current-password"
             required
           />
         </label>
 
         <button type="submit" class="btn primary">Se connecter & tester</button>
 
-        <small class="credentials">
+        <!-- <small class="credentials">
           Payload envoyé:
           <code>{ "username": "test", "password": "12345678" }</code>
-        </small>
+        </small> -->
       </form>
 
       <div id="login-status" class="status"></div>
@@ -443,6 +614,12 @@
           <button class="btn" id="copy-token">Copier</button>
         </header>
         <p id="token-value" class="token-value"></p>
+        <div id="token-info" class="token-info">
+          <strong style="font-size: 12px; color: var(--primary-dark);">API Base URL:</strong>
+          <code id="api-base-url"></code>
+          <strong style="font-size: 12px; color: var(--primary-dark); display: block; margin-top: 8px;">Exemple d'utilisation:</strong>
+          <code id="api-example"></code>
+        </div>
         <p style="margin: 12px 0 0; font-size: 13px; color: var(--text-dark); opacity: 0.7;">
           À conserver côté serveur uniquement. Transmettez-le via
           <code>Authorization: Bearer &lt;token&gt;</code>.
@@ -450,31 +627,22 @@
       </section>
 
       <section id="secure-area" hidden>
-        <h2>Docs autorisées</h2>
-        <p id="role-hint"></p>
+        <h2>Accès autorisés</h2>
+        <div id="role-info" style="margin-bottom: 20px;"></div>
         <div id="doc-grid" class="doc-grid"></div>
 
         <div class="table-wrapper" id="testing-card">
           <h3 style="margin: 0 0 16px;">Tester les endpoints</h3>
+          <p id="endpoint-hint" style="margin: 0 0 12px; font-size: 13px; color: #4c566a;">
+            Les endpoints sont filtrés selon vos permissions.
+          </p>
           <label style="margin-bottom: 12px; display: block;">
             <strong>Endpoint à tester:</strong>
             <select id="endpoint-select" style="margin-top: 8px; width: 100%;">
-              <option value="/orders/shipped?limit=5">GET /orders/shipped (Colis expédiés)</option>
-              <option value="/orders?limit=5">GET /orders (Tous les colis)</option>
-              <option value="/orders/new?limit=5">GET /orders/new (Nouveaux colis)</option>
-              <option value="/orders/in-progress?limit=5">GET /orders/in-progress (Colis en cours)</option>
-              <option value="/orders/delivered?limit=5">GET /orders/delivered (Colis livrés)</option>
-              <option value="/orders/to-return?limit=5">GET /orders/to-return (Colis à retourner)</option>
-              <option value="/orders/change-address?limit=5">GET /orders/change-address (Changement d'adresse)</option>
-              <option value="/pickup-requests?limit=5">GET /pickup-requests (Demandes de ramassage)</option>
-              <option value="/exit-vouchers?limit=5">GET /exit-vouchers (Bons de sortie)</option>
-              <option value="/return-vouchers?limit=5">GET /return-vouchers (Bons de retour)</option>
-              <option value="/refund-requests?limit=5">GET /refund-requests (Demandes de remboursement)</option>
-              <option value="/statistics">GET /statistics (Tableau de bord)</option>
-              <option value="/user">GET /user (Profil utilisateur)</option>
+              <option value="">Sélectionnez un endpoint...</option>
             </select>
           </label>
-          <button class="btn primary" id="test-get" style="width: 100%; margin-bottom: 16px;">Lancer la requête GET</button>
+          <button class="btn primary" id="test-get" style="width: 100%; margin-bottom: 16px;">Lancer la requête</button>
           <pre id="test-output" class="output" aria-live="polite"></pre>
         </div>
       </section>
@@ -507,32 +675,265 @@
       initTheme();
 
       const API_BASE = "https://www.colivry.co/api/v1";
+      
+      // Role mapping with proper detection
       const ROLE_MAP = {
-        "delivery-employee": "livreur",
-        "delivery": "livreur",
-        admin: "admin",
+        "delivery-employee": "delivery-employee",
+        "delivery": "delivery-employee",
+        "client": "client",
+        "admin": "admin",
         "admin-employee": "admin",
-        seller: "vendeur",
+        "seller": "vendeur",
         "seller-employee": "vendeur",
       };
+
+      // Permission to endpoint mapping
+      const PERMISSION_TO_ENDPOINTS = {
+        "statistics": { path: "/statistics", method: "GET", label: "GET /statistics", description: "Tableau de bord" },
+        "new-pickup-requests": { path: "/pickup-requests?status=new&limit=5", method: "GET", label: "GET /pickup-requests (nouveaux)", description: "Nouvelles demandes de ramassage" },
+        "pickup-requests-history": { path: "/pickup-requests?limit=5", method: "GET", label: "GET /pickup-requests", description: "Historique des demandes de ramassage" },
+        "pickup-requests": { 
+          path: "/pickup-requests?limit=5", 
+          method: "GET", 
+          label: "GET /pickup-requests", 
+          description: "Demandes de ramassage",
+          postPath: "/pickup-requests",
+          postMethod: "POST",
+          postLabel: "POST /pickup-requests",
+          postDescription: "Créer une nouvelle demande de ramassage",
+          postBody: {
+            data: [{
+              article_name: "test",
+              quantity: 10,
+              price: 100,
+              phone: "0662716901",
+              address: "E 46 N 16 20010 Casablanca Mar",
+              recipient_name: "CHAHID ACHRAF",
+              remark: null,
+              city: {
+                key: "f0625708-377c-4839-9c3f-d33fb086f03c",
+                city_name: "Casablanca"
+              },
+              sector: {
+                key: "62620fff-f282-4f8b-a5cb-41d3549a0ccf",
+                sector_name: "AIN SBAA"
+              },
+              shop: {
+                key: "f6d367ec-72f8-4c31-a729-8bdee34304d1",
+                shop_name: "ACHRAF"
+              },
+              client: {
+                key: "4045cfe6-1884-4cf7-aa6a-168ae56a8854",
+                last_name: "ACHRAF",
+                first_name: "CHAHID"
+              }
+            }]
+          }
+        },
+        "new-pickup-requests": { 
+          path: "/pickup-requests?status=new&limit=5", 
+          method: "GET", 
+          label: "GET /pickup-requests (nouveaux)", 
+          description: "Nouvelles demandes de ramassage",
+          postPath: "/pickup-requests",
+          postMethod: "POST",
+          postLabel: "POST /pickup-requests",
+          postDescription: "Créer une nouvelle demande de ramassage",
+          postBody: {
+            data: [{
+              article_name: "test",
+              quantity: 10,
+              price: 100,
+              phone: "0662716901",
+              address: "E 46 N 16 20010 Casablanca Mar",
+              recipient_name: "CHAHID ACHRAF",
+              remark: null,
+              city: {
+                key: "f0625708-377c-4839-9c3f-d33fb086f03c",
+                city_name: "Casablanca"
+              },
+              sector: {
+                key: "62620fff-f282-4f8b-a5cb-41d3549a0ccf",
+                sector_name: "AIN SBAA"
+              },
+              shop: {
+                key: "f6d367ec-72f8-4c31-a729-8bdee34304d1",
+                shop_name: "ACHRAF"
+              },
+              client: {
+                key: "4045cfe6-1884-4cf7-aa6a-168ae56a8854",
+                last_name: "ACHRAF",
+                first_name: "CHAHID"
+              }
+            }]
+          }
+        },
+        "new-orders": { 
+          path: "/orders/new?limit=5", 
+          method: "GET", 
+          label: "GET /orders/new", 
+          description: "Nouveaux colis",
+          postPath: "/orders",
+          postMethod: "POST",
+          postLabel: "POST /orders",
+          postDescription: "Créer de nouveaux colis",
+          postBody: {
+            orders: [{
+              articleName: "test",
+              quantity: "1",
+              price: "120",
+              phone: "0662716901",
+              address: "string",
+              recipient_name: "string"
+            }],
+            refundRequest: false
+          },
+          deletePath: "/orders/{order-id}",
+          deleteMethod: "DELETE",
+          deleteLabel: "DELETE /orders/{order-id}",
+          deleteDescription: "Supprimer un colis par son ID"
+        },
+        "all-orders": { 
+          path: "/orders?limit=5", 
+          method: "GET", 
+          label: "GET /orders", 
+          description: "Tous les colis",
+          deletePath: "/orders/{order-id}",
+          deleteMethod: "DELETE",
+          deleteLabel: "DELETE /orders/{order-id}",
+          deleteDescription: "Supprimer un colis par son ID"
+        },
+        "shipped-orders": { 
+          path: "/orders/shipped?limit=5", 
+          method: "GET", 
+          label: "GET /orders/shipped", 
+          description: "Colis expédiés",
+          deletePath: "/orders/{order-id}",
+          deleteMethod: "DELETE",
+          deleteLabel: "DELETE /orders/{order-id}",
+          deleteDescription: "Supprimer un colis par son ID"
+        },
+        "change-address": { 
+          path: "/orders/change-address?limit=5", 
+          method: "GET", 
+          label: "GET /orders/change-address", 
+          description: "Changement d'adresse",
+          deletePath: "/orders/{order-id}",
+          deleteMethod: "DELETE",
+          deleteLabel: "DELETE /orders/{order-id}",
+          deleteDescription: "Supprimer un colis par son ID"
+        },
+        "delivered-orders": { 
+          path: "/orders/delivered?limit=5", 
+          method: "GET", 
+          label: "GET /orders/delivered", 
+          description: "Colis livrés",
+          deletePath: "/orders/{order-id}",
+          deleteMethod: "DELETE",
+          deleteLabel: "DELETE /orders/{order-id}",
+          deleteDescription: "Supprimer un colis par son ID"
+        },
+        "returned-orders": { 
+          path: "/orders/to-return?limit=5", 
+          method: "GET", 
+          label: "GET /orders/to-return", 
+          description: "Colis à retourner",
+          deletePath: "/orders/{order-id}",
+          deleteMethod: "DELETE",
+          deleteLabel: "DELETE /orders/{order-id}",
+          deleteDescription: "Supprimer un colis par son ID"
+        },
+        "orders-to-be-returned": { path: "/orders/to-return?limit=5", method: "GET", label: "GET /orders/to-return", description: "Colis à retourner" },
+        "return-invoices": { path: "/return-vouchers?limit=5", method: "GET", label: "GET /return-vouchers", description: "Bons de retour" },
+        "returned-invoices": { path: "/return-vouchers?limit=5", method: "GET", label: "GET /return-vouchers", description: "Bons de retour" },
+        "refunds": { path: "/refund-requests?limit=5", method: "GET", label: "GET /refund-requests", description: "Demandes de remboursement" },
+        "delivered-invoices": { path: "/exit-vouchers?limit=5", method: "GET", label: "GET /exit-vouchers", description: "Bons de sortie" },
+        "managers": { path: "/user", method: "GET", label: "GET /user", description: "Profil utilisateur" },
+        "support": { path: "/support?limit=5", method: "GET", label: "GET /support", description: "Support client" },
+        "clients-support": { path: "/support?limit=5", method: "GET", label: "GET /support", description: "Support clients" },
+        "cities-management": { path: "/cities?limit=5", method: "GET", label: "GET /cities", description: "Gestion des villes" },
+        "announcements-management": { path: "/announcements?limit=5", method: "GET", label: "GET /announcements", description: "Gestion des annonces" },
+      };
+
+      // Default endpoints available to all authenticated users
+      const DEFAULT_ENDPOINTS = [
+        { path: "/user", method: "GET", label: "GET /user", description: "Profil utilisateur" },
+      ];
+
+      // Role-based endpoint defaults (when no permissions are provided)
+      const ROLE_DEFAULT_ENDPOINTS = {
+        "delivery-employee": [
+          { path: "/orders/shipped?limit=5", method: "GET", label: "GET /orders/shipped", description: "Colis expédiés" },
+          { path: "/orders/new?limit=5", method: "GET", label: "GET /orders/new", description: "Nouveaux colis" },
+          { path: "/orders/in-progress?limit=5", method: "GET", label: "GET /orders/in-progress", description: "Colis en cours" },
+          { path: "/orders/delivered?limit=5", method: "GET", label: "GET /orders/delivered", description: "Colis livrés" },
+          { path: "/orders/to-return?limit=5", method: "GET", label: "GET /orders/to-return", description: "Colis à retourner" },
+          { path: "/pickup-requests?limit=5", method: "GET", label: "GET /pickup-requests", description: "Demandes de ramassage" },
+          { path: "/exit-vouchers?limit=5", method: "GET", label: "GET /exit-vouchers", description: "Bons de sortie" },
+          { path: "/return-vouchers?limit=5", method: "GET", label: "GET /return-vouchers", description: "Bons de retour" },
+          { path: "/refund-requests?limit=5", method: "GET", label: "GET /refund-requests", description: "Demandes de remboursement" },
+          { path: "/statistics", method: "GET", label: "GET /statistics", description: "Tableau de bord" },
+        ],
+        "client": [
+          { path: "/statistics", method: "GET", label: "GET /statistics", description: "Tableau de bord" },
+          { path: "/pickup-requests?limit=5", method: "GET", label: "GET /pickup-requests", description: "Demandes de ramassage" },
+          { path: "/orders/new?limit=5", method: "GET", label: "GET /orders/new", description: "Nouveaux colis" },
+          { path: "/orders?limit=5", method: "GET", label: "GET /orders", description: "Tous les colis" },
+          { path: "/orders/shipped?limit=5", method: "GET", label: "GET /orders/shipped", description: "Colis expédiés" },
+          { path: "/orders/delivered?limit=5", method: "GET", label: "GET /orders/delivered", description: "Colis livrés" },
+          { path: "/orders/to-return?limit=5", method: "GET", label: "GET /orders/to-return", description: "Colis à retourner" },
+          { path: "/orders/change-address?limit=5", method: "GET", label: "GET /orders/change-address", description: "Changement d'adresse" },
+          { path: "/refund-requests?limit=5", method: "GET", label: "GET /refund-requests", description: "Demandes de remboursement" },
+          { path: "/support?limit=5", method: "GET", label: "GET /support", description: "Support client" },
+        ],
+        "admin": [
+          { path: "/pickup-requests?limit=5", method: "GET", label: "GET /pickup-requests", description: "Demandes de ramassage" },
+          { path: "/orders/new?limit=5", method: "GET", label: "GET /orders/new", description: "Nouveaux colis" },
+          { path: "/orders/change-address?limit=5", method: "GET", label: "GET /orders/change-address", description: "Changement d'adresse" },
+          { path: "/orders/to-return?limit=5", method: "GET", label: "GET /orders/to-return", description: "Colis à retourner" },
+          { path: "/refund-requests?limit=5", method: "GET", label: "GET /refund-requests", description: "Demandes de remboursement" },
+          { path: "/support?limit=5", method: "GET", label: "GET /support", description: "Support clients" },
+        ],
+      };
+
       const DOCS_BY_ROLE = {
-        livreur: [
+        "delivery-employee": [
+          {
+            label: "Accès autorisés - Livreur",
+            description: "Endpoints et permissions disponibles pour les livreurs.",
+            type: "access",
+            role: "delivery-employee",
+          },
           {
             label: "Guide Livreur",
             description: "Checklist livraison & récupération tracking.",
             href: "../docs/role-livreur.md",
           },
+        ],
+        "client": [
           {
-            label: "Tester l'API",
-            description: "Suivez les étapes GET /orders/shipped.",
-            action: "test",
+            label: "Accès autorisés - Client",
+            description: "Endpoints et permissions disponibles pour les clients.",
+            type: "access",
+            role: "client",
+          },
+          {
+            label: "Guide Client",
+            description: "Documentation complète pour les clients.",
+            href: "../docs/colivry-api.md",
           },
         ],
-        admin: [
+        "admin": [
           {
-            label: "Documentation API",
-            description: "Endpoints /user, /orders, quotas.",
-            href: "../docs/colivry-api.md",
+            label: "Flux d'authentification",
+            description: "Comprendre le processus de connexion et détection des permissions.",
+            type: "flow",
+          },
+          {
+            label: "Accès autorisés - Admin",
+            description: "Endpoints et permissions disponibles pour les administrateurs.",
+            type: "access",
+            role: "admin",
           },
           {
             label: "Google Sheets Sync",
@@ -545,16 +946,17 @@
             href: "../docs/role-admin.md",
           },
         ],
-        vendeur: [
+        "vendeur": [
+          {
+            label: "Accès autorisés - Vendeur",
+            description: "Endpoints et permissions disponibles pour les vendeurs.",
+            type: "access",
+            role: "vendeur",
+          },
           {
             label: "Guide Vendeur",
             description: "Suivi des ventes et notifications clients.",
             href: "../docs/role-vendeur.md",
-          },
-          {
-            label: "Documentation API (lecture)",
-            description: "Endpoints autorisés en lecture seule.",
-            href: "../docs/colivry-api.md",
           },
         ],
       };
@@ -562,15 +964,123 @@
       const loginForm = document.getElementById("login-form");
       const statusEl = document.getElementById("login-status");
       const secureArea = document.getElementById("secure-area");
-      const roleHint = document.getElementById("role-hint");
+      const roleInfo = document.getElementById("role-info");
       const docGrid = document.getElementById("doc-grid");
       const testButton = document.getElementById("test-get");
       const testOutput = document.getElementById("test-output");
       const tokenWrap = document.getElementById("token-wrap");
       const tokenValue = document.getElementById("token-value");
       const copyTokenBtn = document.getElementById("copy-token");
+      const endpointSelect = document.getElementById("endpoint-select");
+      const apiBaseUrl = document.getElementById("api-base-url");
+      const apiExample = document.getElementById("api-example");
 
       let activeSession = null;
+
+      // Helper function to create copyable link
+      function createCopyableLink(fullUrl) {
+        const endpointLink = document.createElement("div");
+        endpointLink.className = "endpoint-link";
+        endpointLink.setAttribute("data-url", fullUrl);
+        endpointLink.setAttribute("title", "Cliquer pour copier l'URL");
+        
+        const copyIcon = document.createElement("svg");
+        copyIcon.className = "copy-icon";
+        copyIcon.setAttribute("width", "16");
+        copyIcon.setAttribute("height", "16");
+        copyIcon.setAttribute("viewBox", "0 0 24 24");
+        copyIcon.setAttribute("fill", "none");
+        copyIcon.setAttribute("stroke", "currentColor");
+        copyIcon.setAttribute("stroke-width", "2");
+        copyIcon.innerHTML = '<path d="M8 5.00005C7.01165 5.00005 6.49359 5.00005 6.09202 5.21799C5.71569 5.40973 5.40973 5.71569 5.21799 6.09202C5 6.49359 5 7.01165 5 8.00005V16C5 16.9884 5 17.5064 5.21799 17.908C5.40973 18.2843 5.71569 18.5903 6.09202 18.782C6.49359 19 7.01165 19 8 19H16C16.9884 19 17.5064 19 17.908 18.782C18.2843 18.5903 18.5903 18.2843 18.782 17.908C19 17.5064 19 16.9884 19 16V8.00005C19 7.01165 19 6.49359 18.782 6.09202C18.5903 5.71569 18.2843 5.40973 17.908 5.21799C17.5064 5.00005 16.9884 5.00005 16 5.00005H8Z" stroke="currentColor" stroke-width="2"/><path d="M8 5.00005C8 4.05719 8 3.58576 8.29289 3.29286C8.58579 3.00005 9.05722 3.00005 10 3.00005H14C14.9428 3.00005 15.4142 3.00005 15.7071 3.29286C16 3.58576 16 4.05719 16 5.00005V8.00005C16 8.94291 16 9.41434 15.7071 9.70724C15.4142 10 14.9428 10 14 10H10C9.05722 10 8.58579 10 8.29289 9.70724C8 9.41434 8 8.94291 8 8.00005V5.00005Z" stroke="currentColor" stroke-width="2"/>';
+        
+        const urlText = document.createElement("span");
+        urlText.textContent = fullUrl;
+        urlText.style.flex = "1";
+
+        endpointLink.appendChild(copyIcon);
+        endpointLink.appendChild(urlText);
+        
+        // Add copy functionality
+        endpointLink.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(fullUrl);
+            endpointLink.classList.add("copied");
+            const originalText = urlText.textContent;
+            urlText.textContent = "✓ Copié!";
+            setTimeout(() => {
+              endpointLink.classList.remove("copied");
+              urlText.textContent = originalText;
+            }, 2000);
+          } catch (err) {
+            // Fallback for older browsers
+            const textArea = document.createElement("textarea");
+            textArea.value = fullUrl;
+            textArea.style.position = "fixed";
+            textArea.style.opacity = "0";
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textArea);
+            endpointLink.classList.add("copied");
+            const originalText = urlText.textContent;
+            urlText.textContent = "✓ Copié!";
+            setTimeout(() => {
+              endpointLink.classList.remove("copied");
+              urlText.textContent = originalText;
+            }, 2000);
+          }
+        });
+
+        return endpointLink;
+      }
+
+      // Get available endpoints based on permissions
+      function getAvailableEndpoints(permissions, role) {
+        const endpoints = new Map();
+        
+        // Always add default endpoints
+        DEFAULT_ENDPOINTS.forEach(ep => {
+          endpoints.set(ep.path, ep);
+        });
+
+        // If permissions are provided, use them
+        if (permissions && Array.isArray(permissions) && permissions.length > 0) {
+          permissions.forEach(perm => {
+            const endpoint = PERMISSION_TO_ENDPOINTS[perm];
+            if (endpoint) {
+              endpoints.set(endpoint.path, endpoint);
+            }
+          });
+        } else {
+          // Fallback to role-based defaults
+          const roleDefaults = ROLE_DEFAULT_ENDPOINTS[role] || [];
+          roleDefaults.forEach(ep => {
+            endpoints.set(ep.path, ep);
+          });
+        }
+
+        return Array.from(endpoints.values());
+      }
+
+      // Get role display name
+      function getRoleDisplayName(role) {
+        const names = {
+          "delivery-employee": "Livreur",
+          "client": "Client",
+          "admin": "Administrateur",
+          "vendeur": "Vendeur",
+        };
+        return names[role] || role;
+      }
+
+      // Get role badge class
+      function getRoleBadgeClass(role) {
+        if (role === "delivery-employee") return "delivery";
+        if (role === "client") return "client";
+        if (role === "admin") return "admin";
+        return "";
+      }
 
       loginForm.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -605,31 +1115,63 @@
             throw new Error("Aucun accessToken retourné par l'API.");
           }
 
-          const detectedRoleRaw =
-            payload.user_role ||
-            payload.user?.role ||
-            payload.user_data?.role ||
-            "livreur";
-          const role =
-            ROLE_MAP[detectedRoleRaw.toLowerCase()] ||
-            detectedRoleRaw.toLowerCase();
+          // Fetch user data to get full role and permissions
+          statusEl.textContent = "Récupération des données utilisateur...";
+          
+          const userResponse = await fetch(`${API_BASE}/user`, {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              Accept: "application/json",
+            },
+          });
+
+          if (!userResponse.ok) {
+            throw new Error(`Erreur lors de la récupération des données utilisateur: ${userResponse.status}`);
+          }
+
+          const userData = await userResponse.json();
+          
+          // Extract role and permissions from /user response
+          const detectedRoleRaw = userData.user_role || 
+                                   payload.user_role ||
+                                   userData.user?.role ||
+                                   payload.user?.role ||
+                                   userData.user_data?.role ||
+                                   "delivery-employee";
+          
+          const role = ROLE_MAP[detectedRoleRaw.toLowerCase()] || detectedRoleRaw.toLowerCase();
+          
+          // Permissions are in user_data.permissions in the /user response
+          const permissions = userData.user_data?.permissions || 
+                             userData.permissions || 
+                             payload.user_data?.permissions ||
+                             payload.permissions || 
+                             [];
 
           activeSession = {
             username,
             role,
             token,
-            profile: payload.user_data || payload.user || {},
+            permissions,
+            profile: userData.user_data || userData.user || payload.user_data || payload.user || {},
           };
 
           statusEl.textContent = `Authentifié en tant que ${
             activeSession.profile.first_name || username
-          } (${role}).`;
+          } (${getRoleDisplayName(role)}).`;
           statusEl.className = "status success";
 
           tokenWrap.hidden = false;
           tokenValue.textContent = token;
+          
+          // Update API info
+          apiBaseUrl.textContent = API_BASE;
+          apiExample.textContent = `curl -X GET "${API_BASE}/user" \\\n  -H "Authorization: Bearer ${token.substring(0, 20)}..."`;
 
-          renderDocs(role);
+          renderRoleInfo(role, permissions);
+          renderEndpoints(permissions, role);
+          renderDocs(role, permissions);
           secureArea.hidden = false;
         } catch (error) {
           statusEl.textContent = `Échec: ${error.message}. Vérifiez l'exemple { "username": "pierre", "password": "123456" } ou contactez un admin.`;
@@ -650,63 +1192,569 @@
         });
       });
 
-      function renderDocs(role) {
-        const resources = DOCS_BY_ROLE[role] || [];
-        roleHint.textContent = `Rôle détecté: ${role} (${resources.length} ressources disponibles).`;
-        docGrid.innerHTML = "";
+      function renderRoleInfo(role, permissions) {
+        const roleDisplay = getRoleDisplayName(role);
+        const badgeClass = getRoleBadgeClass(role);
+        
+        let html = `<p style="margin: 0 0 12px; font-size: 14px;">
+          <strong>Rôle détecté:</strong> 
+          <span class="role-badge ${badgeClass}">${roleDisplay}</span>
+        </p>`;
+        
+        if (permissions && permissions.length > 0) {
+          html += `<div class="permissions-list">`;
+          permissions.forEach(perm => {
+            html += `<span class="permission-tag">${perm}</span>`;
+          });
+          html += `</div>`;
+        }
+        
+        roleInfo.innerHTML = html;
+      }
 
-        resources.forEach((resource) => {
-          const card = document.createElement("article");
-          card.className = "doc-card";
-
-          const title = document.createElement("h3");
-          title.textContent = resource.label;
-          card.appendChild(title);
-
-          const desc = document.createElement("p");
-          desc.textContent = resource.description;
-          card.appendChild(desc);
-
-          if (resource.href) {
-            const link = document.createElement("a");
-            link.href = resource.href;
-            link.target = "_blank";
-            link.rel = "noopener noreferrer";
-            link.textContent = "Ouvrir";
-            link.className = "btn";
-            card.appendChild(link);
-          } else if (resource.action === "test") {
-            const btn = document.createElement("button");
-            btn.className = "btn";
-            btn.textContent = "Utiliser le test GET ci-dessous";
-            btn.addEventListener("click", () => testButton.focus());
-            card.appendChild(btn);
+      function renderEndpoints(permissions, role) {
+        const endpoints = getAvailableEndpoints(permissions, role);
+        const endpointHint = document.getElementById("endpoint-hint");
+        
+        endpointSelect.innerHTML = '<option value="">Sélectionnez un endpoint...</option>';
+        
+        if (endpoints.length === 0) {
+          endpointSelect.innerHTML = '<option value="">Aucun endpoint disponible</option>';
+          endpointSelect.disabled = true;
+          if (endpointHint) {
+            endpointHint.textContent = "Aucun endpoint disponible avec vos permissions actuelles.";
+            endpointHint.style.color = "#b42318";
+          }
+          return;
+        }
+        
+        endpointSelect.disabled = false;
+        let totalEndpoints = endpoints.length;
+        
+        // Add POST endpoints if available
+        endpoints.forEach(endpoint => {
+          const option = document.createElement("option");
+          option.value = endpoint.path;
+          option.textContent = `${endpoint.label} - ${endpoint.description}`;
+          option.setAttribute("data-method", "GET");
+          endpointSelect.appendChild(option);
+          
+          // Check if this endpoint has a POST method
+          const permissionEndpoint = Object.values(PERMISSION_TO_ENDPOINTS).find(pe => 
+            pe.path === endpoint.path || pe.path.split('?')[0] === endpoint.path.split('?')[0]
+          );
+          
+          if (permissionEndpoint && permissionEndpoint.postPath) {
+            const postOption = document.createElement("option");
+            postOption.value = permissionEndpoint.postPath;
+            postOption.textContent = `${permissionEndpoint.postLabel} - ${permissionEndpoint.postDescription}`;
+            postOption.setAttribute("data-method", "POST");
+            endpointSelect.appendChild(postOption);
+            totalEndpoints++;
           }
 
-          docGrid.appendChild(card);
+          // Check if this endpoint has a DELETE method
+          if (permissionEndpoint && permissionEndpoint.deletePath) {
+            const deleteOption = document.createElement("option");
+            deleteOption.value = permissionEndpoint.deletePath;
+            deleteOption.textContent = `${permissionEndpoint.deleteLabel} - ${permissionEndpoint.deleteDescription}`;
+            deleteOption.setAttribute("data-method", "DELETE");
+            endpointSelect.appendChild(deleteOption);
+            totalEndpoints++;
+          }
+        });
+        
+        if (endpointHint) {
+          endpointHint.textContent = `${totalEndpoints} endpoint${totalEndpoints > 1 ? 's' : ''} disponible${totalEndpoints > 1 ? 's' : ''} selon vos permissions.`;
+          endpointHint.style.color = "#4c566a";
+        }
+      }
+
+      function renderDocs(role, permissions = []) {
+        const resources = DOCS_BY_ROLE[role] || [];
+        docGrid.innerHTML = "";
+
+        if (resources.length === 0) {
+          docGrid.innerHTML = '<p style="color: #4c566a; font-size: 14px;">Aucune documentation spécifique disponible pour ce rôle.</p>';
+          return;
+        }
+
+        resources.forEach((resource) => {
+          if (resource.type === "access") {
+            // Create access documentation card showing available endpoints for the role
+            const accessCard = document.createElement("article");
+            accessCard.className = "doc-card";
+            accessCard.style.gridColumn = "1 / -1"; // Full width
+
+            const title = document.createElement("h3");
+            title.textContent = resource.label;
+            title.style.marginBottom = "8px";
+            accessCard.appendChild(title);
+
+            const desc = document.createElement("p");
+            desc.textContent = resource.description;
+            desc.style.marginBottom = "20px";
+            desc.style.color = "#4c566a";
+            accessCard.appendChild(desc);
+
+            // Get endpoints for this role
+            const roleEndpoints = ROLE_DEFAULT_ENDPOINTS[resource.role] || [];
+            const allPermissions = Object.keys(PERMISSION_TO_ENDPOINTS);
+            
+            // Group endpoints by category
+            const endpointGroups = {
+              "Authentification": [
+                { path: "/user", label: "GET /user", description: "Profil utilisateur" }
+              ],
+              "Commandes & Colis": [],
+              "Ramassages": [],
+              "Bons": [],
+              "Remboursements": [],
+              "Support": [],
+              "Statistiques": [],
+              "Administration": []
+            };
+
+            roleEndpoints.forEach(ep => {
+              if (ep.path.includes("/orders")) {
+                endpointGroups["Commandes & Colis"].push(ep);
+              } else if (ep.path.includes("/pickup")) {
+                endpointGroups["Ramassages"].push(ep);
+              } else if (ep.path.includes("/voucher") || ep.path.includes("/exit") || ep.path.includes("/return")) {
+                endpointGroups["Bons"].push(ep);
+              } else if (ep.path.includes("/refund")) {
+                endpointGroups["Remboursements"].push(ep);
+              } else if (ep.path.includes("/support")) {
+                endpointGroups["Support"].push(ep);
+              } else if (ep.path.includes("/statistics")) {
+                endpointGroups["Statistiques"].push(ep);
+              } else if (ep.path.includes("/cities") || ep.path.includes("/announcements")) {
+                endpointGroups["Administration"].push(ep);
+              }
+            });
+
+            // Render each group
+            Object.entries(endpointGroups).forEach(([category, endpoints]) => {
+              if (endpoints.length === 0) return;
+
+              const groupDiv = document.createElement("div");
+              groupDiv.style.cssText = "margin-bottom: 24px; padding: 16px; background: var(--primary-light); border-radius: 12px; border-left: 4px solid var(--primary);";
+
+              const groupTitle = document.createElement("h4");
+              groupTitle.style.cssText = "margin: 0 0 12px; font-size: 14px; font-weight: 600; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px;";
+              groupTitle.textContent = category;
+              groupDiv.appendChild(groupTitle);
+
+              const endpointsList = document.createElement("div");
+              endpointsList.style.cssText = "display: grid; gap: 8px;";
+
+              endpoints.forEach(endpoint => {
+                // Check if this endpoint has POST method from permissions
+                const permissionEndpoint = Object.values(PERMISSION_TO_ENDPOINTS).find(pe => 
+                  pe.path === endpoint.path || pe.path.split('?')[0] === endpoint.path.split('?')[0]
+                );
+
+                const endpointItem = document.createElement("div");
+                endpointItem.style.cssText = "padding: 12px; background: var(--card-bg); border-radius: 8px; border: 1px solid var(--border); margin-bottom: 12px;";
+
+                // GET Method
+                const getSection = document.createElement("div");
+                getSection.style.cssText = "margin-bottom: 12px;";
+
+                const endpointHeader = document.createElement("div");
+                endpointHeader.style.cssText = "display: flex; align-items: center; gap: 8px; margin-bottom: 8px;";
+
+                const endpointMethod = document.createElement("code");
+                endpointMethod.style.cssText = "font-family: 'Courier New', monospace; font-size: 13px; font-weight: 600; color: var(--primary-dark);";
+                endpointMethod.textContent = endpoint.label;
+
+                const endpointDesc = document.createElement("span");
+                endpointDesc.style.cssText = "font-size: 13px; color: var(--text-dark); opacity: 0.8;";
+                endpointDesc.textContent = endpoint.description;
+
+                endpointHeader.appendChild(endpointMethod);
+                endpointHeader.appendChild(endpointDesc);
+                getSection.appendChild(endpointHeader);
+
+                // Create copyable API link for GET
+                const fullUrl = `${API_BASE}${endpoint.path.split('?')[0]}`;
+                const endpointLink = createCopyableLink(fullUrl);
+                getSection.appendChild(endpointLink);
+                endpointItem.appendChild(getSection);
+
+                // POST Method (if available)
+                if (permissionEndpoint && permissionEndpoint.postPath) {
+                  const postSection = document.createElement("div");
+                  postSection.style.cssText = "padding-top: 12px; border-top: 1px dashed var(--border);";
+
+                  const postHeader = document.createElement("div");
+                  postHeader.style.cssText = "display: flex; align-items: center; gap: 8px; margin-bottom: 8px;";
+
+                  const postMethod = document.createElement("code");
+                  postMethod.style.cssText = "font-family: 'Courier New', monospace; font-size: 13px; font-weight: 600; color: #3b82f6;";
+                  postMethod.textContent = permissionEndpoint.postLabel;
+
+                  const postDesc = document.createElement("span");
+                  postDesc.style.cssText = "font-size: 13px; color: var(--text-dark); opacity: 0.8;";
+                  postDesc.textContent = permissionEndpoint.postDescription;
+
+                  postHeader.appendChild(postMethod);
+                  postHeader.appendChild(postDesc);
+                  postSection.appendChild(postHeader);
+
+                  // Create copyable API link for POST
+                  const postFullUrl = `${API_BASE}${permissionEndpoint.postPath}`;
+                  const postLink = createCopyableLink(postFullUrl);
+                  postSection.appendChild(postLink);
+
+                  // Show POST request body
+                  if (permissionEndpoint.postBody) {
+                    const bodySection = document.createElement("div");
+                    bodySection.style.cssText = "margin-top: 12px; padding: 12px; background: var(--output-bg); border-radius: 8px; font-size: 12px; font-family: 'Courier New', monospace; color: var(--output-text); overflow-x: auto;";
+
+                    const bodyLabel = document.createElement("div");
+                    bodyLabel.style.cssText = "margin-bottom: 6px; color: #94a3b8; font-size: 11px;";
+                    bodyLabel.textContent = "Request Body:";
+                    bodySection.appendChild(bodyLabel);
+
+                    const bodyCode = document.createElement("pre");
+                    bodyCode.style.cssText = "margin: 0; white-space: pre-wrap; word-break: break-all;";
+                    bodyCode.textContent = JSON.stringify(permissionEndpoint.postBody, null, 2);
+                    bodySection.appendChild(bodyCode);
+
+                    postSection.appendChild(bodySection);
+                  }
+
+                  endpointItem.appendChild(postSection);
+                }
+
+                // DELETE Method (if available)
+                if (permissionEndpoint && permissionEndpoint.deletePath) {
+                  const deleteSection = document.createElement("div");
+                  deleteSection.style.cssText = "padding-top: 12px; border-top: 1px dashed var(--border);";
+
+                  const deleteHeader = document.createElement("div");
+                  deleteHeader.style.cssText = "display: flex; align-items: center; gap: 8px; margin-bottom: 8px;";
+
+                  const deleteMethod = document.createElement("code");
+                  deleteMethod.style.cssText = "font-family: 'Courier New', monospace; font-size: 13px; font-weight: 600; color: #ef4444;";
+                  deleteMethod.textContent = permissionEndpoint.deleteLabel;
+
+                  const deleteDesc = document.createElement("span");
+                  deleteDesc.style.cssText = "font-size: 13px; color: var(--text-dark); opacity: 0.8;";
+                  deleteDesc.textContent = permissionEndpoint.deleteDescription;
+
+                  deleteHeader.appendChild(deleteMethod);
+                  deleteHeader.appendChild(deleteDesc);
+                  deleteSection.appendChild(deleteHeader);
+
+                  // Create copyable API link for DELETE
+                  const deleteFullUrl = `${API_BASE}${permissionEndpoint.deletePath}`;
+                  const deleteLink = createCopyableLink(deleteFullUrl);
+                  deleteSection.appendChild(deleteLink);
+
+                  // Add note about order-id parameter
+                  const deleteNote = document.createElement("div");
+                  deleteNote.style.cssText = "margin-top: 8px; padding: 8px; background: rgba(239, 68, 68, 0.1); border-radius: 6px; font-size: 12px; color: #ef4444;";
+                  deleteNote.textContent = "⚠️ Remplacez {order-id} par l'ID réel du colis (ex: CLV-20251129225306073)";
+                  deleteSection.appendChild(deleteNote);
+
+                  endpointItem.appendChild(deleteSection);
+                }
+
+                endpointsList.appendChild(endpointItem);
+              });
+
+              groupDiv.appendChild(endpointsList);
+              accessCard.appendChild(groupDiv);
+            });
+
+            // Show permissions mapping
+            const permissionsDiv = document.createElement("div");
+            permissionsDiv.style.cssText = "margin-top: 20px; padding: 16px; background: rgba(41, 199, 111, 0.05); border-radius: 12px; border: 1px solid var(--primary);";
+
+            const permTitle = document.createElement("h4");
+            permTitle.style.cssText = "margin: 0 0 12px; font-size: 14px; font-weight: 600; color: var(--primary-dark);";
+            permTitle.textContent = "Permissions disponibles";
+            permissionsDiv.appendChild(permTitle);
+
+            const permDesc = document.createElement("p");
+            permDesc.style.cssText = "margin: 0 0 12px; font-size: 13px; color: var(--text-dark); opacity: 0.9;";
+            permDesc.textContent = permissions.length > 0 
+              ? "Vos permissions actuelles (extraites depuis user_data.permissions via GET /user):"
+              : "Permissions par défaut pour ce rôle:";
+            permissionsDiv.appendChild(permDesc);
+
+            const permTags = document.createElement("div");
+            permTags.style.cssText = "display: flex; flex-wrap: wrap; gap: 6px;";
+            
+            // Use actual permissions if available, otherwise show role defaults
+            const permsToShow = permissions.length > 0 ? permissions : (() => {
+              const defaultPerms = {
+                "delivery-employee": ["orders", "pickup-requests", "statistics", "vouchers", "refunds"],
+                "client": ["statistics", "new-orders", "all-orders", "shipped-orders", "delivered-orders", "returned-orders", "change-address", "support", "refunds"],
+                "admin": ["pickup-requests", "new-orders", "change-address", "returned-orders", "orders-to-be-returned", "returned-invoices", "refunds", "cities-management", "announcements-management", "clients-support"],
+                "vendeur": ["orders", "statistics"]
+              };
+              return defaultPerms[resource.role] || [];
+            })();
+
+            permsToShow.forEach(perm => {
+              const tag = document.createElement("span");
+              tag.className = "permission-tag";
+              tag.textContent = perm;
+              permTags.appendChild(tag);
+            });
+
+            permissionsDiv.appendChild(permTags);
+            accessCard.appendChild(permissionsDiv);
+
+            docGrid.appendChild(accessCard);
+          } else if (resource.type === "flow") {
+            // Create visual flow card for authentication process
+            const flowCard = document.createElement("article");
+            flowCard.className = "doc-card";
+            flowCard.style.gridColumn = "1 / -1"; // Full width
+
+            const title = document.createElement("h3");
+            title.textContent = resource.label;
+            title.style.marginBottom = "16px";
+            flowCard.appendChild(title);
+
+            const desc = document.createElement("p");
+            desc.textContent = resource.description;
+            desc.style.marginBottom = "20px";
+            flowCard.appendChild(desc);
+
+            // Step 1: POST /login
+            const step1 = document.createElement("div");
+            step1.style.cssText = "padding: 16px; background: var(--primary-light); border-radius: 12px; border-left: 4px solid var(--primary); margin-bottom: 16px;";
+            
+            const step1Header = document.createElement("div");
+            step1Header.style.cssText = "display: flex; align-items: center; gap: 8px; margin-bottom: 8px;";
+            
+            const step1Number = document.createElement("span");
+            step1Number.style.cssText = "display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--primary); color: white; border-radius: 50%; font-size: 13px; font-weight: 600;";
+            step1Number.textContent = "1";
+            
+            const step1Title = document.createElement("strong");
+            step1Title.style.cssText = "color: var(--primary-dark); font-size: 15px;";
+            step1Title.textContent = "POST /login";
+            
+            const step1Badge = document.createElement("span");
+            step1Badge.className = "badge";
+            step1Badge.textContent = "Authentification";
+            step1Badge.style.marginLeft = "auto";
+            
+            step1Header.appendChild(step1Number);
+            step1Header.appendChild(step1Title);
+            step1Header.appendChild(step1Badge);
+            step1.appendChild(step1Header);
+            
+            const step1Desc = document.createElement("p");
+            step1Desc.style.cssText = "margin: 8px 0; font-size: 13px; color: var(--text-dark); opacity: 0.9;";
+            step1Desc.textContent = "Envoyez vos identifiants pour obtenir un accessToken.";
+            step1.appendChild(step1Desc);
+            
+            const step1Code = document.createElement("div");
+            step1Code.style.cssText = "margin-top: 12px; padding: 12px; background: var(--output-bg); border-radius: 8px; font-size: 12px; font-family: 'Courier New', monospace; color: var(--output-text); overflow-x: auto;";
+            step1Code.innerHTML = `
+              <div style="margin-bottom: 4px; color: #94a3b8;">Request:</div>
+              <div>POST ${API_BASE}/login</div>
+              <div style="margin-top: 8px; margin-bottom: 4px; color: #94a3b8;">Body:</div>
+              <div>{ "username": "user", "password": "pass" }</div>
+              <div style="margin-top: 8px; margin-bottom: 4px; color: #94a3b8;">Response:</div>
+              <div>{ "accessToken": "38165|...", "user_role": "...", ... }</div>
+            `;
+            step1.appendChild(step1Code);
+            flowCard.appendChild(step1);
+
+            // Step 2: GET /user
+            const step2 = document.createElement("div");
+            step2.style.cssText = "padding: 16px; background: var(--primary-light); border-radius: 12px; border-left: 4px solid var(--primary); margin-bottom: 16px;";
+            
+            const step2Header = document.createElement("div");
+            step2Header.style.cssText = "display: flex; align-items: center; gap: 8px; margin-bottom: 8px;";
+            
+            const step2Number = document.createElement("span");
+            step2Number.style.cssText = "display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--primary); color: white; border-radius: 50%; font-size: 13px; font-weight: 600;";
+            step2Number.textContent = "2";
+            
+            const step2Title = document.createElement("strong");
+            step2Title.style.cssText = "color: var(--primary-dark); font-size: 15px;";
+            step2Title.textContent = "GET /user";
+            
+            const step2Badge = document.createElement("span");
+            step2Badge.className = "badge";
+            step2Badge.textContent = "Récupération des données";
+            step2Badge.style.marginLeft = "auto";
+            
+            step2Header.appendChild(step2Number);
+            step2Header.appendChild(step2Title);
+            step2Header.appendChild(step2Badge);
+            step2.appendChild(step2Header);
+            
+            const step2Desc = document.createElement("p");
+            step2Desc.style.cssText = "margin: 8px 0; font-size: 13px; color: var(--text-dark); opacity: 0.9;";
+            step2Desc.textContent = "Utilisez le token pour récupérer le rôle et les permissions depuis user_data.permissions.";
+            step2.appendChild(step2Desc);
+            
+            const step2Code = document.createElement("div");
+            step2Code.style.cssText = "margin-top: 12px; padding: 12px; background: var(--output-bg); border-radius: 8px; font-size: 12px; font-family: 'Courier New', monospace; color: var(--output-text); overflow-x: auto;";
+            step2Code.innerHTML = `
+              <div style="margin-bottom: 4px; color: #94a3b8;">Request:</div>
+              <div>GET ${API_BASE}/user</div>
+              <div style="margin-top: 4px;">Authorization: Bearer &lt;token&gt;</div>
+              <div style="margin-top: 8px; margin-bottom: 4px; color: #94a3b8;">Response:</div>
+              <div>{</div>
+              <div style="margin-left: 12px;">"user_role": "admin",</div>
+              <div style="margin-left: 12px;">"user_data": {</div>
+              <div style="margin-left: 24px;">"permissions": ["pickup-requests", "new-orders", ...]</div>
+              <div style="margin-left: 12px;">}</div>
+              <div>}</div>
+            `;
+            step2.appendChild(step2Code);
+            flowCard.appendChild(step2);
+
+            // Step 3: Filter endpoints
+            const step3 = document.createElement("div");
+            step3.style.cssText = "padding: 16px; background: var(--primary-light); border-radius: 12px; border-left: 4px solid var(--primary);";
+            
+            const step3Header = document.createElement("div");
+            step3Header.style.cssText = "display: flex; align-items: center; gap: 8px; margin-bottom: 8px;";
+            
+            const step3Number = document.createElement("span");
+            step3Number.style.cssText = "display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--primary); color: white; border-radius: 50%; font-size: 13px; font-weight: 600;";
+            step3Number.textContent = "3";
+            
+            const step3Title = document.createElement("strong");
+            step3Title.style.cssText = "color: var(--primary-dark); font-size: 15px;";
+            step3Title.textContent = "Filtrage des endpoints";
+            
+            const step3Badge = document.createElement("span");
+            step3Badge.className = "badge";
+            step3Badge.textContent = "Permissions";
+            step3Badge.style.marginLeft = "auto";
+            
+            step3Header.appendChild(step3Number);
+            step3Header.appendChild(step3Title);
+            step3Header.appendChild(step3Badge);
+            step3.appendChild(step3Header);
+            
+            const step3Desc = document.createElement("p");
+            step3Desc.style.cssText = "margin: 8px 0; font-size: 13px; color: var(--text-dark); opacity: 0.9;";
+            step3Desc.textContent = "Les endpoints disponibles sont automatiquement filtrés selon vos permissions. Chaque permission correspond à un endpoint spécifique.";
+            step3.appendChild(step3Desc);
+            
+            const step3Tags = document.createElement("div");
+            step3Tags.style.cssText = "margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center;";
+            step3Tags.innerHTML = `
+              <span class="permission-tag">pickup-requests</span>
+              <span class="permission-tag">new-orders</span>
+              <span class="permission-tag">statistics</span>
+              <span style="font-size: 11px; color: var(--text-dark); opacity: 0.7;">→</span>
+              <span style="font-size: 11px; color: var(--primary-dark);">Endpoints filtrés</span>
+            `;
+            step3.appendChild(step3Tags);
+            flowCard.appendChild(step3);
+
+            docGrid.appendChild(flowCard);
+          } else {
+            // Regular documentation card
+            const card = document.createElement("article");
+            card.className = "doc-card";
+
+            const title = document.createElement("h3");
+            title.textContent = resource.label;
+            card.appendChild(title);
+
+            const desc = document.createElement("p");
+            desc.textContent = resource.description;
+            card.appendChild(desc);
+
+            if (resource.href) {
+              const link = document.createElement("a");
+              link.href = resource.href;
+              link.target = "_blank";
+              link.rel = "noopener noreferrer";
+              link.textContent = "Ouvrir";
+              link.className = "btn";
+              card.appendChild(link);
+            } else if (resource.action === "test") {
+              const btn = document.createElement("button");
+              btn.className = "btn";
+              btn.textContent = "Utiliser le test GET ci-dessous";
+              btn.addEventListener("click", () => testButton.focus());
+              card.appendChild(btn);
+            }
+
+            docGrid.appendChild(card);
+          }
         });
       }
 
-      const endpointSelect = document.getElementById("endpoint-select");
-
       testButton.addEventListener("click", async () => {
         if (!activeSession) {
-          statusEl.textContent = "Connectez-vous avant de lancer un GET.";
+          statusEl.textContent = "Connectez-vous avant de lancer une requête.";
           statusEl.className = "status error";
           return;
         }
 
         const selectedEndpoint = endpointSelect.value;
-        testOutput.textContent = `Requête GET en cours vers ${selectedEndpoint}...`;
+        const selectedOption = endpointSelect.options[endpointSelect.selectedIndex];
+        const method = selectedOption.getAttribute("data-method") || "GET";
+        
+        if (!selectedEndpoint) {
+          statusEl.textContent = "Veuillez sélectionner un endpoint à tester.";
+          statusEl.className = "status error";
+          endpointSelect.focus();
+          return;
+        }
+
+        testButton.disabled = true;
+        testButton.textContent = "Requête en cours...";
+        testOutput.textContent = `Requête ${method} en cours vers ${selectedEndpoint}...`;
 
         try {
-          const response = await fetch(`${API_BASE}${selectedEndpoint}`, {
-            method: "GET",
+          const fetchOptions = {
+            method: method,
             headers: {
               Authorization: `Bearer ${activeSession.token}`,
               Accept: "application/json",
             },
-          });
+          };
+
+          // Add body for POST requests
+          if (method === "POST") {
+            fetchOptions.headers["Content-Type"] = "application/json";
+            // Get the POST body from permission endpoint if available
+            const permissionEndpoint = Object.values(PERMISSION_TO_ENDPOINTS).find(pe => 
+              pe.postPath === selectedEndpoint
+            );
+            if (permissionEndpoint && permissionEndpoint.postBody) {
+              fetchOptions.body = JSON.stringify(permissionEndpoint.postBody);
+            } else {
+              // Default empty body
+              fetchOptions.body = JSON.stringify({});
+            }
+          }
+
+          // Handle DELETE requests with dynamic parameters
+          let actualEndpoint = selectedEndpoint;
+          if (method === "DELETE" && selectedEndpoint.includes("{order-id}")) {
+            const orderId = prompt("Entrez l'ID du colis à supprimer (ex: CLV-20251129225306073):");
+            if (!orderId) {
+              testButton.disabled = false;
+              testButton.textContent = "Lancer la requête";
+              statusEl.textContent = "Suppression annulée - ID requis";
+              statusEl.className = "status error";
+              return;
+            }
+            // Replace {order-id} with actual ID
+            actualEndpoint = selectedEndpoint.replace("{order-id}", orderId);
+          }
+
+          const response = await fetch(`${API_BASE}${actualEndpoint}`, fetchOptions);
 
           const text = await response.text();
           let formattedOutput = "";
@@ -715,16 +1763,27 @@
             try {
               const json = JSON.parse(text);
               formattedOutput = JSON.stringify(json, null, 2);
+              statusEl.textContent = `✓ Requête réussie (${response.status})`;
+              statusEl.className = "status success";
             } catch {
               formattedOutput = text;
+              statusEl.textContent = `✓ Réponse reçue (${response.status})`;
+              statusEl.className = "status success";
             }
           } else {
             formattedOutput = `Statut ${response.status}: ${text || "vide"}`;
+            statusEl.textContent = `✗ Erreur ${response.status}: ${text.substring(0, 100)}`;
+            statusEl.className = "status error";
           }
           
           testOutput.textContent = formattedOutput;
         } catch (error) {
-          testOutput.textContent = `Erreur GET: ${error.message}`;
+          testOutput.textContent = `Erreur réseau: ${error.message}`;
+          statusEl.textContent = `✗ Erreur: ${error.message}`;
+          statusEl.className = "status error";
+        } finally {
+          testButton.disabled = false;
+          testButton.textContent = "Lancer la requête";
         }
       });
     </script>
