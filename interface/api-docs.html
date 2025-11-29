@@ -3,11 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Documentation API Colivry</title>
+    <meta
+      name="description"
+      content="Portail d'intégration API Colivry : connexion sécurisée, documentation détaillée et tests rapides pour livreurs, admins et vendeurs."
+    />
+    <meta
+      name="keywords"
+      content="Colivry, API Colivry, documentation API, intégration livraison, portail développeur, logistique Maroc"
+    />
+    <meta
+      name="robots"
+      content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"
+    />
+    <meta name="author" content="Colivry" />
+    <meta name="application-name" content="Portail API Colivry" />
+    <meta name="theme-color" content="#29C76F" />
+    <meta name="msapplication-TileColor" content="#29C76F" />
+    <link
+      rel="canonical"
+      href="https://www.colivry.co/colivry-ipa/interface/"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://www.app.colivry.co/images/_/_/_/_/colivry-app/resources/js/src/assets/images/logo/logo.svg"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="https://www.app.colivry.co/images/_/_/_/_/colivry-app/resources/js/src/assets/images/logo/logo.svg"
+    />
+    <meta property="og:title" content="Portail d'accès API Colivry" />
+    <meta
+      property="og:description"
+      content="Testez et connectez-vous à l'API Colivry pour suivre les commandes, récupérer les tokens et consulter la documentation en français."
+    />
+    <meta
+      property="og:image"
+      content="https://www.app.colivry.co/images/_/_/_/_/colivry-app/resources/js/src/assets/images/logo/logo.svg"
+    />
+    <meta
+      property="og:url"
+      content="https://www.colivry.co/colivry-ipa/interface/"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Colivry API" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Portail d'accès API Colivry" />
+    <meta
+      name="twitter:description"
+      content="Interface unifiée pour générer des tokens et parcourir la documentation API Colivry."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.app.colivry.co/images/_/_/_/_/colivry-app/resources/js/src/assets/images/logo/logo.svg"
+    />
+    <title>Intégration API Colivry</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -50,23 +105,31 @@
           "Segoe UI", sans-serif;
         background: var(--bg);
         color: var(--text-dark);
-        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        padding: 24px;
         transition: background-color 0.3s ease, color 0.3s ease;
       }
 
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 24px;
+      .card {
+        background: var(--card-bg);
+        width: min(960px, 100%);
+        border-radius: 18px;
+        box-shadow: 0 25px 45px rgba(15, 23, 42, 0.12);
+        padding: 40px;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
       }
 
-      .header {
+      [data-theme="dark"] .card {
+        box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5);
+      }
+
+      .header-top {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 40px;
-        padding-bottom: 24px;
-        border-bottom: 2px solid var(--border);
+        margin-bottom: 24px;
       }
 
       .logo-container {
@@ -105,183 +168,286 @@
         height: 18px;
       }
 
-      h1 {
+      form {
+        display: grid;
+        gap: 18px;
+        margin-top: 32px;
+      }
+
+      label {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 14px;
+        color: #4c566a;
+      }
+
+      input, select {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+        font-size: 15px;
+        font-family: inherit;
+        background: var(--card-bg);
+        color: var(--text-dark);
+        transition: all 0.2s ease;
+      }
+
+      input:focus, select:focus {
+        outline: 2px solid var(--primary-light);
+        border-color: var(--primary);
+      }
+
+      h2 {
+        margin-top: 40px;
+        margin-bottom: 8px;
+      }
+
+      header h1 {
+        margin: 0 0 12px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+
+      header p {
         margin: 0;
-        font-size: 32px;
-        font-weight: 700;
-        color: var(--primary);
+        color: #4c566a;
+        line-height: 1.5;
       }
 
-      .intro {
-        background: var(--card-bg);
-        border-radius: 16px;
-        padding: 32px;
-        margin-bottom: 32px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      .table-wrapper {
+        margin-top: 32px;
         border: 1px solid var(--border);
-      }
-
-      .intro p {
-        margin: 12px 0;
-        color: var(--text-dark);
-        opacity: 0.9;
-      }
-
-      .section {
-        background: var(--card-bg);
         border-radius: 16px;
-        padding: 32px;
-        margin-bottom: 32px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        border: 1px solid var(--border);
+        overflow: hidden;
       }
 
-      .section h2 {
-        margin: 0 0 24px;
-        font-size: 24px;
-        font-weight: 600;
-        color: var(--primary);
-        padding-bottom: 12px;
-        border-bottom: 2px solid var(--primary-light);
-      }
-
-      .endpoint {
-        margin-bottom: 40px;
-        padding-bottom: 32px;
-        border-bottom: 1px solid var(--border);
-      }
-
-      .endpoint:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
-        padding-bottom: 0;
-      }
-
-      .method {
-        display: inline-block;
-        padding: 4px 12px;
-        border-radius: 6px;
-        font-weight: 600;
-        font-size: 13px;
-        margin-right: 12px;
-      }
-
-      .method.get {
-        background: rgba(41, 199, 111, 0.15);
-        color: var(--primary-dark);
-      }
-
-      .method.post {
-        background: rgba(59, 130, 246, 0.15);
-        color: #3b82f6;
-      }
-
-      .endpoint-url {
-        font-family: 'Courier New', monospace;
-        font-size: 16px;
-        color: var(--text-dark);
-        word-break: break-all;
-        margin: 12px 0;
-      }
-
-      .params-table {
+      table {
         width: 100%;
         border-collapse: collapse;
-        margin: 20px 0;
-        background: var(--card-bg);
       }
 
-      .params-table th {
+      thead {
         background: var(--primary-light);
-        color: var(--primary-dark);
-        padding: 12px 16px;
+      }
+
+      th,
+      td {
+        padding: 18px 24px;
         text-align: left;
+        font-size: 15px;
+      }
+
+      th {
         font-weight: 600;
-        font-size: 14px;
-        border: 1px solid var(--border);
+        color: #1f2933;
       }
 
-      .params-table td {
-        padding: 12px 16px;
-        border: 1px solid var(--border);
-        font-size: 14px;
-      }
-
-      .params-table tr:nth-child(even) {
-        background: var(--bg);
-      }
-
-      .code-block {
-        background: var(--output-bg);
-        color: var(--output-text);
-        padding: 20px;
-        border-radius: 8px;
-        overflow-x: auto;
-        font-family: 'Courier New', monospace;
-        font-size: 13px;
-        line-height: 1.5;
-        margin: 20px 0;
-      }
-
-      .code-block code {
-        color: var(--output-text);
+      td {
+        border-top: 1px solid var(--border);
+        color: #1f2933;
       }
 
       .badge {
-        display: inline-block;
-        padding: 2px 8px;
-        border-radius: 4px;
-        font-size: 11px;
-        font-weight: 600;
-        margin-left: 8px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: var(--primary-light);
+        color: var(--primary);
+        font-weight: 500;
       }
 
-      .badge.required {
-        background: rgba(239, 68, 68, 0.15);
-        color: #ef4444;
+      .btn {
+        border: 1px solid var(--border);
+        background: var(--card-bg);
+        color: var(--text-dark);
+        border-radius: 8px;
+        padding: 8px 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
       }
 
-      .badge.optional {
-        background: rgba(156, 163, 175, 0.15);
-        color: #9ca3af;
+      .btn:hover {
+        border-color: var(--primary);
+        color: var(--primary);
       }
 
-      @media (max-width: 768px) {
-        .container {
-          padding: 16px;
+      .btn.primary {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+      }
+
+      .btn.primary:hover {
+        background: var(--primary-dark);
+        border-color: var(--primary-dark);
+      }
+
+      .status {
+        margin-top: 18px;
+        padding: 12px 16px;
+        border-radius: 10px;
+        font-size: 14px;
+      }
+
+      .status.pending {
+        background: #fff5db;
+        color: #ad6800;
+      }
+
+      .status.success {
+        background: var(--primary-light);
+        color: var(--primary-dark);
+      }
+
+      .status.error {
+        background: #fdeaea;
+        color: #b42318;
+      }
+
+      .doc-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+        margin-top: 16px;
+      }
+
+      .doc-card {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        background: var(--card-bg);
+        transition: all 0.2s ease;
+      }
+
+      .doc-card:hover {
+        border-color: var(--primary);
+        box-shadow: 0 4px 12px var(--primary-light);
+      }
+
+      .doc-card h3 {
+        margin: 0;
+        font-size: 16px;
+      }
+
+      .doc-card p {
+        margin: 0;
+        color: #4c566a;
+        font-size: 14px;
+      }
+
+      .token-card {
+        border: 1px dashed var(--primary);
+        background: var(--primary-light);
+        padding: 18px;
+        border-radius: 14px;
+        margin-top: 24px;
+      }
+
+      .token-card header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+
+      .token-value {
+        margin: 0;
+        font-size: 13px;
+        white-space: nowrap;
+        overflow: auto;
+      }
+
+      .output {
+        background: var(--output-bg);
+        color: var(--output-text);
+        padding: 16px;
+        margin: 0;
+        border-radius: 0 0 16px 16px;
+        max-height: 240px;
+        overflow: auto;
+        font-size: 13px;
+        font-family: 'Courier New', monospace;
+      }
+
+      .credentials {
+        margin-top: 24px;
+        font-size: 14px;
+        color: #4c566a;
+      }
+
+      code {
+        background: var(--code-bg);
+        color: var(--primary-dark);
+        padding: 2px 6px;
+        border-radius: 6px;
+        font-size: 13px;
+      }
+
+      [data-theme="dark"] code {
+        color: var(--primary);
+      }
+
+      @media (max-width: 640px) {
+        body {
+          padding: 12px;
         }
 
-        .header {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 16px;
+        .card {
+          padding: 24px;
         }
 
-        .section {
-          padding: 20px;
+        th,
+        td {
+          padding: 14px 16px;
         }
 
-        .params-table {
-          font-size: 12px;
-        }
-
-        .params-table th,
-        .params-table td {
-          padding: 8px 12px;
+        form {
+          margin-top: 20px;
         }
       }
     </style>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Portail API Colivry",
+        "applicationCategory": "WebApplication",
+        "operatingSystem": "Any",
+        "description": "Générez des tokens, testez les endpoints et accédez à la documentation API Colivry.",
+        "url": "https://www.colivry.co/colivry-ipa/interface/",
+        "inLanguage": "fr-FR",
+        "brand": {
+          "@type": "Brand",
+          "name": "Colivry",
+          "logo": "https://www.app.colivry.co/images/_/_/_/_/colivry-app/resources/js/src/assets/images/logo/logo.svg"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR",
+          "description": "Accès développeur gratuit à la documentation API."
+        }
+      }
+    </script>
   </head>
   <body>
-    <div class="container">
-      <div class="header">
+    <section class="card">
+      <div class="header-top">
         <div class="logo-container">
-          <img
-            src="https://www.app.colivry.co/images/_/_/_/_/colivry-app/resources/js/src/assets/images/logo/logo.svg"
-            alt="Colivry Logo"
-            class="logo"
-          />
-          <h1>API Colivry Documentation</h1>
+          <img src="https://www.app.colivry.co/images/_/_/_/_/colivry-app/resources/js/src/assets/images/logo/logo.svg" alt="Colivry Logo" class="logo" />
+          <div>
+            <p class="badge">Intégration API</p>
+            <h1 style="margin: 8px 0 0;">Portail d'accès Colivry</h1>
+          </div>
         </div>
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -290,716 +456,103 @@
           <span id="theme-text">Mode sombre</span>
         </button>
       </div>
-
-      <div class="intro">
-        <h2 style="margin-top: 0; color: var(--primary);">Bienvenue à l'API Colivry</h2>
+      <header>
         <p>
-          Bienvenue à l'API Colivry, votre solution complète pour la gestion de la livraison et des commandes.
-          Pour accéder à notre API, vous aurez besoin d'un jeton d'authentification. Ce jeton est généré via
-          l'endpoint <code>POST /login</code> avec vos identifiants, assurez-vous de l'inclure dans l'en-tête
-          <code>Authorization: Bearer [votre jeton]</code> de chaque requête.
+          Connectez-vous avec vos identifiants livreur / admin / vendeur. Le
+          formulaire envoie une requête <code>POST /login</code> (JSON) afin
+          d'obtenir un <em>accessToken</em>, puis utilise ce jeton pour tester
+          l'API. Vos ressources documentaires apparaissent automatiquement selon
+          vos permissions.
         </p>
-        <p>
-          Notre API renvoie des codes d'état HTTP appropriés et des messages descriptifs en cas d'erreur.
-          Par exemple, une réponse à une requête non autorisée pourrait ressembler à :
-          <code>{ "error": "Vous n'avez pas les autorisations nécessaires" }</code>.
+        <div style="margin-top: 20px; padding: 16px; background: var(--primary-light); border-radius: 12px; border: 1px solid var(--primary);">
+          <h3 style="margin: 0 0 8px; font-size: 16px; color: var(--primary-dark); display: flex; align-items: center; gap: 8px;">
+            <span>📚</span>
+            <span>Documentation API complète</span>
+          </h3>
+          <p style="margin: 0 0 12px; font-size: 14px; opacity: 0.9;">
+            Consultez la documentation détaillée de tous les endpoints avec exemples, paramètres et réponses.
+            <strong>Accès libre, aucune connexion requise.</strong>
+          </p>
+          <a href="api-docs.html" target="_blank" class="btn primary" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+            <span>Ouvrir la documentation API</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </div>
+      </header>
+
+      <form id="login-form">
+        <label>
+          Nom d'utilisateur
+          <input
+            type="text"
+            id="username"
+            required
+          />
+        </label>
+
+        <label>
+          Mot de passe
+          <input
+            type="password"
+            id="password"
+            required
+          />
+        </label>
+
+        <button type="submit" class="btn primary">Se connecter & tester</button>
+
+        <!-- <small class="credentials">
+          Payload envoyé:
+          <code>{ "username": "test", "password": "12345678" }</code>
+        </small> -->
+      </form>
+
+      <div id="login-status" class="status"></div>
+
+      <section id="token-wrap" class="token-card" hidden>
+        <header>
+          <h3 style="margin: 0;">Access token</h3>
+          <button class="btn" id="copy-token">Copier</button>
+        </header>
+        <p id="token-value" class="token-value"></p>
+        <p style="margin: 12px 0 0; font-size: 13px; color: var(--text-dark); opacity: 0.7;">
+          À conserver côté serveur uniquement. Transmettez-le via
+          <code>Authorization: Bearer &lt;token&gt;</code>.
         </p>
-        <p>
-          Nous limitons le nombre de requêtes à notre API pour assurer la qualité du service.
-          Veuillez noter qu'il y a une limite de <strong>1000 requêtes par heure</strong>.
-        </p>
-        <p>
-          Chez Colivry, nous nous engageons à améliorer continuellement notre service. Tout en nous efforçant
-          de maintenir la rétrocompatibilité de notre API, nous publierons des notifications anticipées et des
-          instructions de migration pour tous les changements majeurs.
-        </p>
-      </div>
+      </section>
 
-      <div class="section">
-        <h2>🔐 Sécurité</h2>
-        
-        <div class="endpoint">
-          <div>
-            <span class="method post">POST</span>
-            <span class="endpoint-url">https://www.colivry.co/api/v1/login</span>
-          </div>
-          
-          <h3 style="margin-top: 20px; font-size: 18px;">Authentification</h3>
-          <p>Obtenez un jeton d'accès en vous authentifiant avec vos identifiants.</p>
+      <section id="secure-area" hidden>
+        <h2>Docs autorisées</h2>
+        <p id="role-hint"></p>
+        <div id="doc-grid" class="doc-grid"></div>
 
-          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
-          <table class="params-table">
-            <thead>
-              <tr>
-                <th>Paramètre</th>
-                <th>Valeur</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>Content-Type</code></td>
-                <td>application/json</td>
-                <td>Type de Media</td>
-              </tr>
-              <tr>
-                <td><code>Accept</code></td>
-                <td>application/json</td>
-                <td>Type de réponse attendu</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres (Body):</h4>
-          <table class="params-table">
-            <thead>
-              <tr>
-                <th>Paramètre</th>
-                <th>Type</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>username</code> <span class="badge required">Obligatoire</span></td>
-                <td>string</td>
-                <td>Nom d'utilisateur</td>
-              </tr>
-              <tr>
-                <td><code>password</code> <span class="badge required">Obligatoire</span></td>
-                <td>string</td>
-                <td>Mot de passe de l'utilisateur</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <h4 style="margin-top: 20px; font-size: 16px;">Résultat:</h4>
-          <div class="code-block">
-<code>{
-    "accessToken": "38165|I5pwBNyzNQX9Ki9VpURznJhsqchwTeJrA6nyZu6z",
-    "user_role": "delivery-employee",
-    "user_data": {
-        "key": "418d2100-b3bb-4fde-b7cf-a2b560d7c4f5",
-        "first_name": "Pierre",
-        "last_name": "Dupont",
-        "avatar_path": null
-    },
-    "active": 1
-}</code>
-          </div>
+        <div class="table-wrapper" id="testing-card">
+          <h3 style="margin: 0 0 16px;">Tester les endpoints</h3>
+          <label style="margin-bottom: 12px; display: block;">
+            <strong>Endpoint à tester:</strong>
+            <select id="endpoint-select" style="margin-top: 8px; width: 100%;">
+              <option value="/orders/shipped?limit=5">GET /orders/shipped (Colis expédiés)</option>
+              <option value="/orders?limit=5">GET /orders (Tous les colis)</option>
+              <option value="/orders/new?limit=5">GET /orders/new (Nouveaux colis)</option>
+              <option value="/orders/in-progress?limit=5">GET /orders/in-progress (Colis en cours)</option>
+              <option value="/orders/delivered?limit=5">GET /orders/delivered (Colis livrés)</option>
+              <option value="/orders/to-return?limit=5">GET /orders/to-return (Colis à retourner)</option>
+              <option value="/orders/change-address?limit=5">GET /orders/change-address (Changement d'adresse)</option>
+              <option value="/pickup-requests?limit=5">GET /pickup-requests (Demandes de ramassage)</option>
+              <option value="/exit-vouchers?limit=5">GET /exit-vouchers (Bons de sortie)</option>
+              <option value="/return-vouchers?limit=5">GET /return-vouchers (Bons de retour)</option>
+              <option value="/refund-requests?limit=5">GET /refund-requests (Demandes de remboursement)</option>
+              <option value="/statistics">GET /statistics (Tableau de bord)</option>
+              <option value="/user">GET /user (Profil utilisateur)</option>
+            </select>
+          </label>
+          <button class="btn primary" id="test-get" style="width: 100%; margin-bottom: 16px;">Lancer la requête GET</button>
+          <pre id="test-output" class="output" aria-live="polite"></pre>
         </div>
-      </div>
-
-      <div class="section">
-        <h2>👤 Profil Utilisateur</h2>
-
-        <div class="endpoint">
-          <div>
-            <span class="method get">GET</span>
-            <span class="endpoint-url">https://www.colivry.co/api/v1/user</span>
-          </div>
-
-          <h3 style="margin-top: 20px; font-size: 18px;">Récupérer le profil utilisateur</h3>
-          <p>Récupère les informations du profil de l'utilisateur authentifié.</p>
-
-          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
-          <table class="params-table">
-            <thead>
-              <tr>
-                <th>Paramètre</th>
-                <th>Valeur</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>Accept</code></td>
-                <td>application/json</td>
-                <td>Type de Media</td>
-              </tr>
-              <tr>
-                <td><code>Authorization</code></td>
-                <td>Bearer [token]</td>
-                <td>Token, obtenu via POST /login</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <h4 style="margin-top: 20px; font-size: 16px;">Résultat:</h4>
-          <div class="code-block">
-<code>{
-    "id": 42,
-    "email": "pierre@colivry.co",
-    "first_name": "Pierre",
-    "last_name": "Dupont",
-    "role": "delivery-employee",
-    "avatar_path": null
-}</code>
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <h2>📦 Commandes & Colis</h2>
-
-        <div class="endpoint">
-          <div>
-            <span class="method get">GET</span>
-            <span class="endpoint-url">https://www.colivry.co/api/v1/orders</span>
-          </div>
-
-          <h3 style="margin-top: 20px; font-size: 18px;">Liste tous les colis</h3>
-          <p>Récupère la liste complète des colis avec pagination et filtres optionnels.</p>
-
-          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
-          <table class="params-table">
-            <thead>
-              <tr>
-                <th>Paramètre</th>
-                <th>Valeur</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>Accept</code></td>
-                <td>application/json</td>
-                <td>Type de Media</td>
-              </tr>
-              <tr>
-                <td><code>Authorization</code></td>
-                <td>Bearer [token]</td>
-                <td>Token, obtenu via POST /login</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres (Query):</h4>
-          <table class="params-table">
-            <thead>
-              <tr>
-                <th>Paramètre</th>
-                <th>Type</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>limit</code> <span class="badge optional">Optionnel</span></td>
-                <td>integer</td>
-                <td>Nombre d'éléments par page (défaut: 50)</td>
-              </tr>
-              <tr>
-                <td><code>page</code> <span class="badge optional">Optionnel</span></td>
-                <td>integer</td>
-                <td>Numéro de page (défaut: 1)</td>
-              </tr>
-              <tr>
-                <td><code>city</code> <span class="badge optional">Optionnel</span></td>
-                <td>string</td>
-                <td>Filtrer par ville (ex: "casa")</td>
-              </tr>
-              <tr>
-                <td><code>status</code> <span class="badge optional">Optionnel</span></td>
-                <td>string</td>
-                <td>Filtrer par statut</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <h4 style="margin-top: 20px; font-size: 16px;">Résultat:</h4>
-          <div class="code-block">
-<code>{
-    "data": [
-        {
-            "order_id": "ORD-2024-001",
-            "status": "En attente de ramassage",
-            "created_at": "2024-08-18T15:04:13.000000Z",
-            "destination": "Adil",
-            "phone": "0674674444",
-            "city": {
-                "name": "CASABLANCA",
-                "id": 80
-            },
-            "price": 100,
-            "product_name": "sac"
-        }
-    ],
-    "pagination": {
-        "current_page": 1,
-        "from": 1,
-        "last_page": 1,
-        "per_page": 50,
-        "to": 1,
-        "total": 1
-    }
-}</code>
-          </div>
-        </div>
-
-        <div class="endpoint">
-          <div>
-            <span class="method get">GET</span>
-            <span class="endpoint-url">https://www.colivry.co/api/v1/orders/shipped</span>
-          </div>
-
-          <h3 style="margin-top: 20px; font-size: 18px;">Colis expédiés</h3>
-          <p>Récupère la liste des colis expédiés.</p>
-
-          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
-          <table class="params-table">
-            <thead>
-              <tr>
-                <th>Paramètre</th>
-                <th>Valeur</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>Accept</code></td>
-                <td>application/json</td>
-                <td>Type de Media</td>
-              </tr>
-              <tr>
-                <td><code>Authorization</code></td>
-                <td>Bearer [token]</td>
-                <td>Token, obtenu via POST /login</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres (Query):</h4>
-          <table class="params-table">
-            <thead>
-              <tr>
-                <th>Paramètre</th>
-                <th>Type</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>from</code> <span class="badge optional">Optionnel</span></td>
-                <td>ISO8601</td>
-                <td>Date de début (ex: 2024-01-01T00:00:00Z)</td>
-              </tr>
-              <tr>
-                <td><code>to</code> <span class="badge optional">Optionnel</span></td>
-                <td>ISO8601</td>
-                <td>Date de fin (ex: 2024-12-31T23:59:59Z)</td>
-              </tr>
-              <tr>
-                <td><code>limit</code> <span class="badge optional">Optionnel</span></td>
-                <td>integer</td>
-                <td>Nombre d'éléments par page (défaut: 50)</td>
-              </tr>
-              <tr>
-                <td><code>page</code> <span class="badge optional">Optionnel</span></td>
-                <td>integer</td>
-                <td>Numéro de page (défaut: 1)</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <h4 style="margin-top: 20px; font-size: 16px;">Résultat:</h4>
-          <div class="code-block">
-<code>{
-    "data": [
-        {
-            "order_id": "ORD-2024-001",
-            "shipped_at": "2024-06-18T09:42:00Z",
-            "status": "shipped",
-            "carrier": "Chronopost",
-            "tracking": "XW123456789FR",
-            "total": 129.9,
-            "currency": "EUR"
-        }
-    ],
-    "pagination": {
-        "page": 1,
-        "limit": 50,
-        "total": 287
-    }
-}</code>
-          </div>
-        </div>
-
-        <div class="endpoint">
-          <div>
-            <span class="method get">GET</span>
-            <span class="endpoint-url">https://www.colivry.co/api/v1/orders/new</span>
-          </div>
-
-          <h3 style="margin-top: 20px; font-size: 18px;">Nouveaux colis</h3>
-          <p>Récupère la liste des nouveaux colis en attente de traitement.</p>
-
-          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
-          <table class="params-table">
-            <thead>
-              <tr>
-                <th>Paramètre</th>
-                <th>Valeur</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>Accept</code></td>
-                <td>application/json</td>
-                <td>Type de Media</td>
-              </tr>
-              <tr>
-                <td><code>Authorization</code></td>
-                <td>Bearer [token]</td>
-                <td>Token, obtenu via POST /login</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="endpoint">
-          <div>
-            <span class="method get">GET</span>
-            <span class="endpoint-url">https://www.colivry.co/api/v1/orders/in-progress</span>
-          </div>
-
-          <h3 style="margin-top: 20px; font-size: 18px;">Colis en cours</h3>
-          <p>Récupère la liste des colis en cours de livraison.</p>
-
-          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
-          <table class="params-table">
-            <thead>
-              <tr>
-                <th>Paramètre</th>
-                <th>Valeur</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>Accept</code></td>
-                <td>application/json</td>
-                <td>Type de Media</td>
-              </tr>
-              <tr>
-                <td><code>Authorization</code></td>
-                <td>Bearer [token]</td>
-                <td>Token, obtenu via POST /login</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="endpoint">
-          <div>
-            <span class="method get">GET</span>
-            <span class="endpoint-url">https://www.colivry.co/api/v1/orders/delivered</span>
-          </div>
-
-          <h3 style="margin-top: 20px; font-size: 18px;">Colis livrés</h3>
-          <p>Récupère la liste des colis livrés.</p>
-
-          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
-          <table class="params-table">
-            <thead>
-              <tr>
-                <th>Paramètre</th>
-                <th>Valeur</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>Accept</code></td>
-                <td>application/json</td>
-                <td>Type de Media</td>
-              </tr>
-              <tr>
-                <td><code>Authorization</code></td>
-                <td>Bearer [token]</td>
-                <td>Token, obtenu via POST /login</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="endpoint">
-          <div>
-            <span class="method get">GET</span>
-            <span class="endpoint-url">https://www.colivry.co/api/v1/orders/to-return</span>
-          </div>
-
-          <h3 style="margin-top: 20px; font-size: 18px;">Colis à retourner</h3>
-          <p>Récupère la liste des colis à retourner.</p>
-
-          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
-          <table class="params-table">
-            <thead>
-              <tr>
-                <th>Paramètre</th>
-                <th>Valeur</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>Accept</code></td>
-                <td>application/json</td>
-                <td>Type de Media</td>
-              </tr>
-              <tr>
-                <td><code>Authorization</code></td>
-                <td>Bearer [token]</td>
-                <td>Token, obtenu via POST /login</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="endpoint">
-          <div>
-            <span class="method get">GET</span>
-            <span class="endpoint-url">https://www.colivry.co/api/v1/orders/change-address</span>
-          </div>
-
-          <h3 style="margin-top: 20px; font-size: 18px;">Changement d'adresse</h3>
-          <p>Récupère la liste des demandes de changement d'adresse.</p>
-
-          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
-          <table class="params-table">
-            <thead>
-              <tr>
-                <th>Paramètre</th>
-                <th>Valeur</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>Accept</code></td>
-                <td>application/json</td>
-                <td>Type de Media</td>
-              </tr>
-              <tr>
-                <td><code>Authorization</code></td>
-                <td>Bearer [token]</td>
-                <td>Token, obtenu via POST /login</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="section">
-        <h2>🚚 Ramassages</h2>
-
-        <div class="endpoint">
-          <div>
-            <span class="method get">GET</span>
-            <span class="endpoint-url">https://www.colivry.co/api/v1/pickup-requests</span>
-          </div>
-
-          <h3 style="margin-top: 20px; font-size: 18px;">Liste des demandes de ramassage</h3>
-          <p>Récupère la liste des demandes de ramassage avec pagination.</p>
-
-          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
-          <table class="params-table">
-            <thead>
-              <tr>
-                <th>Paramètre</th>
-                <th>Valeur</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>Accept</code></td>
-                <td>application/json</td>
-                <td>Type de Media</td>
-              </tr>
-              <tr>
-                <td><code>Authorization</code></td>
-                <td>Bearer [token]</td>
-                <td>Token, obtenu via POST /login</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres (Query):</h4>
-          <table class="params-table">
-            <thead>
-              <tr>
-                <th>Paramètre</th>
-                <th>Type</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>limit</code> <span class="badge optional">Optionnel</span></td>
-                <td>integer</td>
-                <td>Nombre d'éléments par page (défaut: 50)</td>
-              </tr>
-              <tr>
-                <td><code>page</code> <span class="badge optional">Optionnel</span></td>
-                <td>integer</td>
-                <td>Numéro de page (défaut: 1)</td>
-              </tr>
-              <tr>
-                <td><code>status</code> <span class="badge optional">Optionnel</span></td>
-                <td>string</td>
-                <td>Filtrer par statut</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="section">
-        <h2>📋 Bons</h2>
-
-        <div class="endpoint">
-          <div>
-            <span class="method get">GET</span>
-            <span class="endpoint-url">https://www.colivry.co/api/v1/exit-vouchers</span>
-          </div>
-
-          <h3 style="margin-top: 20px; font-size: 18px;">Bons de sortie</h3>
-          <p>Récupère la liste des bons de sortie.</p>
-
-          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
-          <table class="params-table">
-            <thead>
-              <tr>
-                <th>Paramètre</th>
-                <th>Valeur</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>Accept</code></td>
-                <td>application/json</td>
-                <td>Type de Media</td>
-              </tr>
-              <tr>
-                <td><code>Authorization</code></td>
-                <td>Bearer [token]</td>
-                <td>Token, obtenu via POST /login</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="endpoint">
-          <div>
-            <span class="method get">GET</span>
-            <span class="endpoint-url">https://www.colivry.co/api/v1/return-vouchers</span>
-          </div>
-
-          <h3 style="margin-top: 20px; font-size: 18px;">Bons de retour</h3>
-          <p>Récupère la liste des bons de retour.</p>
-
-          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
-          <table class="params-table">
-            <thead>
-              <tr>
-                <th>Paramètre</th>
-                <th>Valeur</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>Accept</code></td>
-                <td>application/json</td>
-                <td>Type de Media</td>
-              </tr>
-              <tr>
-                <td><code>Authorization</code></td>
-                <td>Bearer [token]</td>
-                <td>Token, obtenu via POST /login</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="section">
-        <h2>💰 Remboursements</h2>
-
-        <div class="endpoint">
-          <div>
-            <span class="method get">GET</span>
-            <span class="endpoint-url">https://www.colivry.co/api/v1/refund-requests</span>
-          </div>
-
-          <h3 style="margin-top: 20px; font-size: 18px;">Demandes de remboursement</h3>
-          <p>Récupère la liste des demandes de remboursement.</p>
-
-          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
-          <table class="params-table">
-            <thead>
-              <tr>
-                <th>Paramètre</th>
-                <th>Valeur</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>Accept</code></td>
-                <td>application/json</td>
-                <td>Type de Media</td>
-              </tr>
-              <tr>
-                <td><code>Authorization</code></td>
-                <td>Bearer [token]</td>
-                <td>Token, obtenu via POST /login</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="section">
-        <h2>📊 Statistiques</h2>
-
-        <div class="endpoint">
-          <div>
-            <span class="method get">GET</span>
-            <span class="endpoint-url">https://www.colivry.co/api/v1/statistics</span>
-          </div>
-
-          <h3 style="margin-top: 20px; font-size: 18px;">Tableau de bord</h3>
-          <p>Récupère les métriques et statistiques selon le rôle de l'utilisateur.</p>
-
-          <h4 style="margin-top: 20px; font-size: 16px;">Liste des paramètres de Header:</h4>
-          <table class="params-table">
-            <thead>
-              <tr>
-                <th>Paramètre</th>
-                <th>Valeur</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>Accept</code></td>
-                <td>application/json</td>
-                <td>Type de Media</td>
-              </tr>
-              <tr>
-                <td><code>Authorization</code></td>
-                <td>Bearer [token]</td>
-                <td>Token, obtenu via POST /login</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+      </section>
+    </section>
 
     <script>
       // Theme management
@@ -1026,7 +579,228 @@
       });
 
       initTheme();
+
+      const API_BASE = "https://www.colivry.co/api/v1";
+      const ROLE_MAP = {
+        "delivery-employee": "livreur",
+        "delivery": "livreur",
+        admin: "admin",
+        "admin-employee": "admin",
+        seller: "vendeur",
+        "seller-employee": "vendeur",
+      };
+      const DOCS_BY_ROLE = {
+        livreur: [
+          {
+            label: "Guide Livreur",
+            description: "Checklist livraison & récupération tracking.",
+            href: "../docs/role-livreur.md",
+          },
+          {
+            label: "Tester l'API",
+            description: "Suivez les étapes GET /orders/shipped.",
+            action: "test",
+          },
+        ],
+        admin: [
+          {
+            label: "Documentation API",
+            description: "Endpoints /user, /orders, quotas.",
+            href: "../docs/colivry-api.md",
+          },
+          {
+            label: "Google Sheets Sync",
+            description: "Synchroniser les commandes expédiées.",
+            href: "../docs/google-sheets.md",
+          },
+          {
+            label: "Guide Admin",
+            description: "Permissions complètes & rotation des clés.",
+            href: "../docs/role-admin.md",
+          },
+        ],
+        vendeur: [
+          {
+            label: "Guide Vendeur",
+            description: "Suivi des ventes et notifications clients.",
+            href: "../docs/role-vendeur.md",
+          },
+          {
+            label: "Documentation API (lecture)",
+            description: "Endpoints autorisés en lecture seule.",
+            href: "../docs/colivry-api.md",
+          },
+        ],
+      };
+
+      const loginForm = document.getElementById("login-form");
+      const statusEl = document.getElementById("login-status");
+      const secureArea = document.getElementById("secure-area");
+      const roleHint = document.getElementById("role-hint");
+      const docGrid = document.getElementById("doc-grid");
+      const testButton = document.getElementById("test-get");
+      const testOutput = document.getElementById("test-output");
+      const tokenWrap = document.getElementById("token-wrap");
+      const tokenValue = document.getElementById("token-value");
+      const copyTokenBtn = document.getElementById("copy-token");
+
+      let activeSession = null;
+
+      loginForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        testOutput.textContent = "";
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        statusEl.textContent =
+          "Connexion en cours... (POST /login + génération du jeton)";
+        statusEl.className = "status pending";
+
+        try {
+          const response = await fetch(`${API_BASE}/login`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+          });
+
+          if (!response.ok) {
+            const message = await response.text();
+            throw new Error(message || `Erreur ${response.status}`);
+          }
+
+          const payload = await response.json();
+          const token =
+            payload.accessToken || payload.token || payload.access_token;
+
+          if (!token) {
+            throw new Error("Aucun accessToken retourné par l'API.");
+          }
+
+          const detectedRoleRaw =
+            payload.user_role ||
+            payload.user?.role ||
+            payload.user_data?.role ||
+            "livreur";
+          const role =
+            ROLE_MAP[detectedRoleRaw.toLowerCase()] ||
+            detectedRoleRaw.toLowerCase();
+
+          activeSession = {
+            username,
+            role,
+            token,
+            profile: payload.user_data || payload.user || {},
+          };
+
+          statusEl.textContent = `Authentifié en tant que ${
+            activeSession.profile.first_name || username
+          } (${role}).`;
+          statusEl.className = "status success";
+
+          tokenWrap.hidden = false;
+          tokenValue.textContent = token;
+
+          renderDocs(role);
+          secureArea.hidden = false;
+        } catch (error) {
+          statusEl.textContent = `Échec: ${error.message}. Vérifiez l'exemple { "username": "pierre", "password": "123456" } ou contactez un admin.`;
+          statusEl.className = "status error";
+          secureArea.hidden = true;
+          tokenWrap.hidden = true;
+          tokenValue.textContent = "";
+          activeSession = null;
+        }
+      });
+
+      copyTokenBtn.addEventListener("click", () => {
+        if (!activeSession?.token) return;
+        navigator.clipboard.writeText(activeSession.token).then(() => {
+          const original = copyTokenBtn.textContent;
+          copyTokenBtn.textContent = "Copié ✔";
+          setTimeout(() => (copyTokenBtn.textContent = original), 1200);
+        });
+      });
+
+      function renderDocs(role) {
+        const resources = DOCS_BY_ROLE[role] || [];
+        roleHint.textContent = `Rôle détecté: ${role} (${resources.length} ressources disponibles).`;
+        docGrid.innerHTML = "";
+
+        resources.forEach((resource) => {
+          const card = document.createElement("article");
+          card.className = "doc-card";
+
+          const title = document.createElement("h3");
+          title.textContent = resource.label;
+          card.appendChild(title);
+
+          const desc = document.createElement("p");
+          desc.textContent = resource.description;
+          card.appendChild(desc);
+
+          if (resource.href) {
+            const link = document.createElement("a");
+            link.href = resource.href;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            link.textContent = "Ouvrir";
+            link.className = "btn";
+            card.appendChild(link);
+          } else if (resource.action === "test") {
+            const btn = document.createElement("button");
+            btn.className = "btn";
+            btn.textContent = "Utiliser le test GET ci-dessous";
+            btn.addEventListener("click", () => testButton.focus());
+            card.appendChild(btn);
+          }
+
+          docGrid.appendChild(card);
+        });
+      }
+
+      const endpointSelect = document.getElementById("endpoint-select");
+
+      testButton.addEventListener("click", async () => {
+        if (!activeSession) {
+          statusEl.textContent = "Connectez-vous avant de lancer un GET.";
+          statusEl.className = "status error";
+          return;
+        }
+
+        const selectedEndpoint = endpointSelect.value;
+        testOutput.textContent = `Requête GET en cours vers ${selectedEndpoint}...`;
+
+        try {
+          const response = await fetch(`${API_BASE}${selectedEndpoint}`, {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${activeSession.token}`,
+              Accept: "application/json",
+            },
+          });
+
+          const text = await response.text();
+          let formattedOutput = "";
+          
+          if (response.ok && text) {
+            try {
+              const json = JSON.parse(text);
+              formattedOutput = JSON.stringify(json, null, 2);
+            } catch {
+              formattedOutput = text;
+            }
+          } else {
+            formattedOutput = `Statut ${response.status}: ${text || "vide"}`;
+          }
+          
+          testOutput.textContent = formattedOutput;
+        } catch (error) {
+          testOutput.textContent = `Erreur GET: ${error.message}`;
+        }
+      });
     </script>
   </body>
 </html>
-
