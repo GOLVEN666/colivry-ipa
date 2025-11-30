@@ -1,5 +1,19 @@
 # Google Sheets ↔ Colivry
 
+Ce guide explique comment synchroniser les données entre Google Sheets et l'API Colivry dans les deux sens:
+- **Import**: Récupérer les commandes expédiées depuis Colivry vers Google Sheets
+- **Export**: Créer automatiquement des commandes/demandes de ramassage depuis Google Sheets vers Colivry
+
+## 📚 Documentation disponible
+
+- **[Guide d'installation client](./google-sheets-setup-guide.md)** - Configuration complète pour créer des commandes depuis Sheets
+- **[Script principal](./google-sheets-sync-client.gs)** - Script Apps Script pour la synchronisation
+- **[Fonctions utilitaires](./google-sheets-helper-functions.gs)** - Fonctions d'aide et de configuration
+
+---
+
+## 📥 Import: Colivry → Google Sheets
+
 Ce guide explique comment tirer les commandes expédiées depuis l'API Colivry directement dans Google Sheets et garder l'onglet synchronisé.
 
 ## Pré-requis

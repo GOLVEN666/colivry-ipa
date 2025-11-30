@@ -1174,7 +1174,7 @@
           renderDocs(role, permissions);
           secureArea.hidden = false;
         } catch (error) {
-          statusEl.textContent = `Échec: ${error.message}. Vérifiez l'exemple { "username": "pierre", "password": "123456" } ou contactez un admin.`;
+          statusEl.textContent = `Échec: ${error.message}. Vérifiez { "username": "***", "password": "*****" } ou contactez un admin.`;
           statusEl.className = "status error";
           secureArea.hidden = true;
           tokenWrap.hidden = true;
